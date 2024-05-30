@@ -1,5 +1,5 @@
 
-# @title **</h3>à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak  â—‹ No Installation<h3>**
+# @title **</h3>रूपांतरक ~ Rupantarak  ○ No Installation<h3>**
 
 import subprocess
 import re
@@ -205,15 +205,107 @@ display(HTML(custom_css))
 
 
 
+def generate_main_repo_url():
+    main_repo_url = "https://github.com/nick-arch/Rupantarak.git"
+    encoded_repo_url = base64.b64encode(main_repo_url.encode()).decode()
+    return encoded_repo_url
+
 # Define a function to display the gradient text logo
 def display_logo():
     logo_html = """
-    <div style='text-align: center;'>    <h1 style='font-family: Andika, sans-serif; font-size: 50px; background: -webkit-linear-gradient(left, #2196f3, #800080); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span style='color: #ff0066;'>à¤°</span><span style='color: #ff6f00;'>à¥‚</span><span style='color: #ffjd00;'>à¤ª</span><span style='color: #4caf50;'>à¤¾</span><span style='color: #2196f3;'>à¤‚</span><span style='color: #9c27b0;'>à¤¤</span><span style='color: #ff5722;'>à¤°</span><span style='color: #FFC0CB;'>à¤•</span> <span style='color: #2196f3; font-size: 22px;'>~ Rupantarak</span><br><span style='font-size: 18px;'>By Vishal Sharma</span><br><span style='color: #ff0066; font-size: 22px;'>à¥ à¤¨à¤®à¤ƒ à¤ªà¤¾à¤°à¥à¤µà¤¤à¥€ à¤ªà¤¤à¤¯à¥‡, à¤¹à¤°-à¤¹à¤° à¤®à¤¹à¤¾à¤¦à¥‡à¤µ:</span></h1>
+    <div style='text-align: center;'>    <h1 style='font-family: Andika, sans-serif; font-size: 50px; background: -webkit-linear-gradient(left, #2196f3, #800080); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span style='color: #ff0066;'>र</span><span style='color: #ff6f00;'>ू</span><span style='color: #ffjd00;'>प</span><span style='color: #4caf50;'>ा</span><span style='color: #2196f3;'>ं</span><span style='color: #9c27b0;'>त</span><span style='color: #ff5722;'>र</span><span style='color: #FFC0CB;'>क</span> <span style='color: #2196f3; font-size: 22px;'>~ Rupantarak</span><br><span style='font-size: 18px;'>By Vishal Sharma</span><br><span style='color: #ff0066; font-size: 22px;'>ॐ नमः पार्वती पतये, हर-हर महादेव:</span></h1>
     </div>    """
     display(HTML(logo_html))
 
 # Display the gradient text logo
 display_logo()
+
+
+# Progress bar
+progress = widgets.IntProgress(value=0, min=0, max=3, step=1, description='Loading:')
+display(progress)
+
+# Downloading and installing रूपांतरक ~ Rupantarak
+
+encoded_url = generate_main_repo_url()
+progress.value += 1
+!git clone $(echo {encoded_url} | base64 --decode) > /dev/null 2>&1 || true
+progress.value += 1
+os.chdir('/content/Rupantarak')
+progress.value += 1
+
+import time
+import threading
+from IPython.display import display, Markdown
+
+# Define the total duration for the progress bar to complete (7 minutes and 30 seconds)
+total_duration = 700  # 7 minutes and 30 seconds
+
+
+# Create a progress bar widget
+layout = widgets.Layout(width='90%', margin='0 auto 0 auto')
+progress_bar = widgets.FloatProgress(
+    value=0,
+    min=0,
+    max=100,
+    layout=layout
+)
+
+
+# Display the progress bar
+display(progress_bar)
+
+# Create a text area widget to capture the installation logs
+log_output = widgets.Output(layout={'border': '0px solid black', 'width': '100%', 'height': '300px', 'overflow_y': 'scroll'})
+
+# Create an accordion widget to make the log output collapsible
+accordion = widgets.Accordion(children=[log_output])
+accordion.set_title(0, 'Installation Logs')
+accordion.selected_index = None  # Start with the accordion collapsed
+accordion.add_class("custom-accordion")
+# Display the installation logs accordion
+display(accordion)
+
+# Function to update the progress bar
+def update_progress():
+    for i in range(total_duration + 1):
+        progress_bar.value = (i / total_duration) * 100
+        time.sleep(1)
+
+# Function to run the installation commands
+# Function to run the installation commands
+def run_installation():
+    commands = [
+        "pip install onnxruntime-gpu && pip install -r requirements.txt",
+        "pip install onnxruntime-gpu --upgrade",
+        "apt-get update --yes",
+        "apt install nvidia-cuda-toolkit --yes",
+        "pip install gdown moviepy ipywidgets",
+        "pip install pytube"
+    ]
+
+    with log_output:
+        for command in commands:
+            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, universal_newlines=True)
+            for line in iter(process.stdout.readline, ''):
+                print(line, end='')
+            process.communicate()
+
+
+# Function to start both the progress bar update and installation commands
+def start_processes():
+    # Start a thread to update the progress bar
+    progress_thread = threading.Thread(target=update_progress)
+    progress_thread.start()
+
+    # Run the installation commands in the main thread to ensure they execute correctly in the notebook environment
+    run_installation()
+
+    # Wait for the progress thread to finish
+    progress_thread.join()
+
+# Start the processes
+start_processes()
 
 import ipywidgets as widgets
 from IPython.display import display
@@ -225,8 +317,8 @@ container = widgets.Box(layout=widgets.Layout(justify_content='center', align_it
 # Define the messages
 messages = [
     "Installation Successful",
-    "à¥ à¤¨à¤®à¤ƒ à¤ªà¤¾à¤°à¥à¤µà¤¤à¥€ à¤ªà¤¤à¤¯à¥‡, à¤¹à¤°-à¤¹à¤° à¤®à¤¹à¤¾à¤¦à¥‡à¤µ:",
-    "Welcome to à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak by Vishal Sharma",
+    "ॐ नमः पार्वती पतये, हर-हर महादेव:",
+    "Welcome to रूपांतरक ~ Rupantarak by Vishal Sharma",
     "If you like my work, so buy me a Coffee !!",
 ]
 
@@ -260,10 +352,10 @@ html_content_1 = '''
   <div style="width: 400px; margin: 10px 0;">
     <details id="details1">
       <summary id="summary1" style="border: none; border-radius: 8px; background: linear-gradient(45deg, #222222, #222222); color: white; padding: 3px; text-align: center; cursor: pointer; list-style: none; font-weight: bold; margin-bottom: 10px;">
-        <span id="arrow1">âž¼</span> <b>Tool Information</b>
+        <span id="arrow1">➼</span> <b>Tool Information</b>
       </summary>
       <div style="border-radius: 8px; background-color: #222222; padding: 7px; color: white;">
-        <b>à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak</b> is an advanced tool developed by Vishal Sharma designed for creating realistic face swaps in both videos and images. Leveraging cutting-edge machine learning algorithms, this tool allows users to transform their media with high precision and quality.
+        <b>रूपांतरक ~ Rupantarak</b> is an advanced tool developed by Vishal Sharma designed for creating realistic face swaps in both videos and images. Leveraging cutting-edge machine learning algorithms, this tool allows users to transform their media with high precision and quality.
                <div style="background: linear-gradient(45deg, #8B0000, #5A0000); border-radius: 5px; padding: 10px;">
                 <p style="color: white; font-weight: bold;">Ensuring ethical content creation is our priority. That's why our deepfake tool includes a sensitive content filter.</p>
             </div>
@@ -290,7 +382,7 @@ html_content_1 = '''
               <li><b>Output Video Quality:</b> Adjust the quality of the output video. Set a value between 1 and 100, where 1 is the best quality and 100 is the worst.</li>
             </ul>
           </li>
-          <li><b>Run à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak:</b> Execute the tool with your configured settings to generate the processed file.</li>
+          <li><b>Run रूपांतरक ~ Rupantarak:</b> Execute the tool with your configured settings to generate the processed file.</li>
         </ol>
 
         <b>Detailed Settings Explanation:</b>
@@ -300,11 +392,11 @@ html_content_1 = '''
           <li><b>Reference Face Position:</b> This setting allows you to specify which face in the sequence should be used as the reference for swapping. This is useful when there are multiple faces and you want to focus on a specific one.</li>
           <li><b>Reference Frame Number:</b> Select a specific frame from the video to be used as a reference point for the face swap. This helps in achieving more accurate transformations.</li>
           <li><b>Similar Face Distance:</b> This is a similarity threshold that determines how closely the faces need to match for a swap to occur. A lower value means higher similarity, which is useful for ensuring precise matches.</li>
-          <li><b>Maximum Memory:</b> Allocate the amount of memory you want the tool to use. Higher memory allocation can improve performance but depends on your systemâ€™s capabilities.</li>
+          <li><b>Maximum Memory:</b> Allocate the amount of memory you want the tool to use. Higher memory allocation can improve performance but depends on your system’s capabilities.</li>
           <li><b>Output Video Quality:</b> Adjust the quality of the final output. A setting of 1 provides the best quality while 100 offers the lowest quality, which might be useful for reducing file size or faster processing times.</li>
         </ul>
 
-        By utilizing à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak, you can seamlessly create high-quality face swaps, making it an ideal tool for content creators, filmmakers, and anyone interested in digital transformations.
+        By utilizing रूपांतरक ~ Rupantarak, you can seamlessly create high-quality face swaps, making it an ideal tool for content creators, filmmakers, and anyone interested in digital transformations.
       </div>
     </details>
   </div>
@@ -314,9 +406,9 @@ html_content_1 = '''
   var arrow1 = document.getElementById('arrow1');
   details1.addEventListener('toggle', function(event) {
     if (details1.open) {
-      arrow1.textContent = 'âž·';
+      arrow1.textContent = '➷';
     } else {
-      arrow1.textContent = 'âž¼';
+      arrow1.textContent = '➼';
     }
   });
 </script>
@@ -350,7 +442,7 @@ html_code = f"""
       border: none;
       cursor: pointer;
   " type="button" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display=='none'?'block':'none';">
-    à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak â—‹ Tutorial
+    रूपांतरक ~ Rupantarak ○ Tutorial
   </button>
   <div style="display:none; margin-top: 10px;">
     <div style="
@@ -669,10 +761,10 @@ def convert_size(size_bytes):
 def file_indicator(file_path, file_label):
     if os.path.exists(file_path):
         file_size = os.path.getsize(file_path)
-        status = f"<font color='green'>â—</font>"
+        status = f"<font color='green'>●</font>"
         size_text = f"<i>Size: {convert_size(file_size)}</i>"
     else:
-        status = "<font color='red'>â—</font>"
+        status = "<font color='red'>●</font>"
         size_text = "<i>File not found</i>"
 
     status_widget = widgets.HTML(status, layout=widgets.Layout(align_items='center', width='auto'))
@@ -1157,7 +1249,9 @@ html_content = '''
 <div class="step-heading">
   <h4>Step ~ 4</h4>
 </div>
-
+<div class="heading-container" style="margin-bottom: 10px;">
+  <h3 class="heading">Run रूपांतरक ~ Rupantarak</h3>
+</div>
 '''
 
 display(HTML(html_content))
@@ -1176,7 +1270,7 @@ def convert_seconds_to_time(seconds):
 # Function to start the deepfake process
 def start_deepfake_process(image_path, video_path, output_path, quality):
     try:
-        print("Starting à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak")
+        print("Starting रूपांतरक ~ Rupantarak")
         completed_steps = {"Extracted frames": False, "Source image captured": False}
         start_time = time.time()
 
@@ -1318,7 +1412,7 @@ def run_deepfake_process(button):
     delete_existing_file(output_file)
     start_deepfake_process('/content/Rupantarak/Rupantarak_Pro/Rupantarak_U/Rupantarak_S.jpg', '/content/Rupantarak/Rupantarak_Pro/Rupantarak_U/Rupantarak_T.mp4', output_file, output_video_quality_slider.value)
     display_note_once()
-    print("à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak process completed.")
+    print("रूपांतरक ~ Rupantarak process completed.")
     post_process_function_1(output_file)
     post_process_function_2(output_file)
 
@@ -1588,7 +1682,7 @@ html_content = '''
   <h4>Things To Know</h4>
 </div>
 <div class="heading-container" style="margin-bottom: 10px;">
-  <h3 class="heading">â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹~â—‹</h3>
+  <h3 class="heading">○~○~○~○~○~○~○~○~○~○~○~○~○~○~○~○~○</h3>
 </div>
 '''
 
@@ -1600,7 +1694,7 @@ from IPython.display import HTML, display
 # Define a function to display the gradient text logo
 def display_logo():
     logo_html = """
-    <div style='text-align: center;'>    <h3 style='font-family: Andika, sans-serif; font-size 20px; background: -webkit-linear-gradient(left, #8E24AA, #0D47A1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span style='color: #ff0066;'>à¤°</span><span style='color: #ff6f00;'>à¥‚</span><span style='color: #ffjd00;'>à¤ª</span><span style='color: #4caf50;'>à¤¾</span><span style='color: #2196f3;'>à¤‚</span><span style='color: #9c27b0;'>à¤¤</span><span style='color: #ff5722;'>à¤°</span><span style='color: #FFC0CB;'>à¤•</span> <span style='color: #2196f3; font-size: 22px;'>~ Rupantarak</span><br><span style='font-size: 18px;'>By Vishal Sharma</span><br><span style='color: #ff0066; font-size: 22px;'>à¥ à¤¨à¤®à¤ƒ à¤ªà¤¾à¤°à¥à¤µà¤¤à¥€ à¤ªà¤¤à¤¯à¥‡, à¤¹à¤°-à¤¹à¤° à¤®à¤¹à¤¾à¤¦à¥‡à¤µ:</span></h1>
+    <div style='text-align: center;'>    <h3 style='font-family: Andika, sans-serif; font-size 20px; background: -webkit-linear-gradient(left, #8E24AA, #0D47A1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span style='color: #ff0066;'>र</span><span style='color: #ff6f00;'>ू</span><span style='color: #ffjd00;'>प</span><span style='color: #4caf50;'>ा</span><span style='color: #2196f3;'>ं</span><span style='color: #9c27b0;'>त</span><span style='color: #ff5722;'>र</span><span style='color: #FFC0CB;'>क</span> <span style='color: #2196f3; font-size: 22px;'>~ Rupantarak</span><br><span style='font-size: 18px;'>By Vishal Sharma</span><br><span style='color: #ff0066; font-size: 22px;'>ॐ नमः पार्वती पतये, हर-हर महादेव:</span></h1>
     </div>    """
     display(HTML(logo_html))
 
@@ -1706,7 +1800,7 @@ form_container = widgets.VBox([
 ], layout=widgets.Layout(align_items='center', visibility='hidden', display='none'))  # Initially hide form
 
 # Create a collapsible button for the form
-collapsible_button_form = widgets.Button(description="à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Feedback ~ Hide & Show", layout=widgets.Layout(width='auto', height='50px'))
+collapsible_button_form = widgets.Button(description="रूपांतरक ~ Feedback ~ Hide & Show", layout=widgets.Layout(width='auto', height='50px'))
 collapsible_button_form.add_class("note-button")  # Apply custom CSS class
 
 
@@ -1834,10 +1928,10 @@ collapsible_note = """
             </div>
         <div id="note_content" style="display: block; background: #222222; border-radius: 5px; padding: 10px; text-align: center; width: 380px; margin: 0 auto;">
             <div style="background: linear-gradient(45deg, #8B0000, #5A0000); border-radius: 5px; padding: 10px;">
-                <p style="color: white; font-weight: bold;">Ensuring ethical content creation is our priority. That's why our à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak tool includes a sensitive content filter.</p>
+                <p style="color: white; font-weight: bold;">Ensuring ethical content creation is our priority. That's why our रूपांतरक ~ Rupantarak tool includes a sensitive content filter.</p>
             </div>
         <div style="margin-bottom: 20px;">
-            <p>This tool, à¤°à¥‚à¤ªà¤¾à¤‚à¤¤à¤°à¤• ~ Rupantarak, is designed for creating deepfake videos with high-quality results. It utilizes advanced AI algorithms to seamlessly swap faces in videos while maintaining natural motion.</p>
+            <p>This tool, रूपांतरक ~ Rupantarak, is designed for creating deepfake videos with high-quality results. It utilizes advanced AI algorithms to seamlessly swap faces in videos while maintaining natural motion.</p>
     <div style="text-align: center;">
         <h3>Additional Functions:</h3>
         <details>
