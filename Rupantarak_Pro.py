@@ -205,90 +205,7 @@ display(HTML(custom_css))
 
 
 
-
-
 # Define a function to display the gradient text logo
-def display_logo():
-    logo_html = """
-    <div style='text-align: center;'>    <h1 style='font-family: Andika, sans-serif; font-size: 50px; background: -webkit-linear-gradient(left, #2196f3, #800080); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span style='color: #ff0066;'>र</span><span style='color: #ff6f00;'>ू</span><span style='color: #ffjd00;'>प</span><span style='color: #4caf50;'>ा</span><span style='color: #2196f3;'>ं</span><span style='color: #9c27b0;'>त</span><span style='color: #ff5722;'>र</span><span style='color: #FFC0CB;'>क</span> <span style='color: #2196f3; font-size: 22px;'>~ Rupantarak</span><br><span style='font-size: 18px;'>By Vishal Sharma</span><br><span style='color: #ff0066; font-size: 22px;'>ॐ नमः पार्वती पतये, हर-हर महादेव:</span></h1>
-    </div>    """
-    display(HTML(logo_html))
-
-# Display the gradient text logo
-display_logo()
-
-import time
-import threading
-from IPython.display import display, Markdown
-
-# Define the total duration for the progress bar to complete (7 minutes and 30 seconds)
-total_duration = 700  # 7 minutes and 30 seconds
-
-
-# Create a progress bar widget
-layout = widgets.Layout(width='90%', margin='0 auto 0 auto')
-progress_bar = widgets.FloatProgress(
-    value=0,
-    min=0,
-    max=100,
-    layout=layout
-)
-
-
-# Display the progress bar
-display(progress_bar)
-
-# Create a text area widget to capture the installation logs
-log_output = widgets.Output(layout={'border': '0px solid black', 'width': '100%', 'height': '300px', 'overflow_y': 'scroll'})
-
-# Create an accordion widget to make the log output collapsible
-accordion = widgets.Accordion(children=[log_output])
-accordion.set_title(0, 'Installation Logs')
-accordion.selected_index = None  # Start with the accordion collapsed
-accordion.add_class("custom-accordion")
-# Display the installation logs accordion
-display(accordion)
-
-# Function to update the progress bar
-def update_progress():
-    for i in range(total_duration + 1):
-        progress_bar.value = (i / total_duration) * 100
-        time.sleep(1)
-
-# Function to run the installation commands
-# Function to run the installation commands
-def run_installation():
-    commands = [
-        "pip install onnxruntime-gpu && pip install -r requirements.txt",
-        "pip install onnxruntime-gpu --upgrade",
-        "apt-get update --yes",
-        "apt install nvidia-cuda-toolkit --yes",
-        "pip install gdown moviepy ipywidgets",
-        "pip install pytube"
-    ]
-
-    with log_output:
-        for command in commands:
-            process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, universal_newlines=True)
-            for line in iter(process.stdout.readline, ''):
-                print(line, end='')
-            process.communicate()
-
-
-# Function to start both the progress bar update and installation commands
-def start_processes():
-    # Start a thread to update the progress bar
-    progress_thread = threading.Thread(target=update_progress)
-    progress_thread.start()
-
-    # Run the installation commands in the main thread to ensure they execute correctly in the notebook environment
-    run_installation()
-
-    # Wait for the progress thread to finish
-    progress_thread.join()
-
-# Start the processes
-start_processes()
 
 import ipywidgets as widgets
 from IPython.display import display
@@ -1232,9 +1149,7 @@ html_content = '''
 <div class="step-heading">
   <h4>Step ~ 4</h4>
 </div>
-<div class="heading-container" style="margin-bottom: 10px;">
-  <h3 class="heading">Run रूपांतरक ~ Rupantarak</h3>
-</div>
+
 '''
 
 display(HTML(html_content))
