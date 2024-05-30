@@ -1876,30 +1876,4 @@ display(HTML(collapsible_note))
 # Call the function with the provided image path
 fetch_and_show_image("/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Me.jpg")
 
-
-import requests
-
-def download_file_from_google_drive(url, destination):
-    # Extract the file ID from the URL
-    file_id = url.split('/')[-2]
-
-    # Generate the download link
-    download_link = "https://drive.google.com/uc?export=download&id=" + file_id
-
-    # Download the file
-    response = requests.get(download_link)
-    if response.status_code == 200:
-        with open(destination, "wb") as f:
-            f.write(response.content)
-
-# URLs for image and video
-image_url = "https://drive.google.com/file/d/11_kau1nGdDfddnyi0r7iIO03MDCbiFbH/view?usp=sharing"
-video_url = "https://drive.google.com/file/d/11_5tmHcBCJaUO3lBgQ2b7Csp_sp8cdff/view?usp=sharing"
-
-# Paths to save image and video
-image_path = "/content/Rupantarak/Rupantarak_Pro/Rupantarak_U/Rupantarak_S.jpg"
-video_path = "/content/Rupantarak/Rupantarak_Pro/Rupantarak_U/Rupantarak_T.mp4"
-
-# Download image and video
-download_file_from_google_drive(image_url, image_path)
-download_file_from_google_drive(video_url, video_path)
+# Jay Shree Ram
