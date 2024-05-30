@@ -201,7 +201,30 @@ display(HTML(custom_css))
 
 
 
+import os
+import contextlib
 
+def create_folders():
+    # Define folder paths
+    folder_paths = [
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_M/",
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_U/",
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_O/",
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_M/",
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_G/",
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_F/"
+
+
+    ]
+
+    # Suppress print statements
+    with contextlib.redirect_stdout(None):
+        # Create folders
+        for folder_path in folder_paths:
+            os.makedirs(folder_path, exist_ok=True)
+
+# Call the function to create folders
+create_folders()
 
 
 
