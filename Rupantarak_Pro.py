@@ -205,10 +205,7 @@ display(HTML(custom_css))
 
 
 
-def generate_main_repo_url():
-    main_repo_url = "https://github.com/nick-arch/Rupantarak.git"
-    encoded_repo_url = base64.b64encode(main_repo_url.encode()).decode()
-    return encoded_repo_url
+
 
 # Define a function to display the gradient text logo
 def display_logo():
@@ -219,20 +216,6 @@ def display_logo():
 
 # Display the gradient text logo
 display_logo()
-
-
-# Progress bar
-progress = widgets.IntProgress(value=0, min=0, max=3, step=1, description='Loading:')
-display(progress)
-
-# Downloading and installing रूपांतरक ~ Rupantarak
-
-encoded_url = generate_main_repo_url()
-progress.value += 1
-!git clone $(echo {encoded_url} | base64 --decode) > /dev/null 2>&1 || true
-progress.value += 1
-os.chdir('/content/Rupantarak')
-progress.value += 1
 
 import time
 import threading
