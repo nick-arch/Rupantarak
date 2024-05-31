@@ -172,7 +172,14 @@ button:hover {
 
 # Inject custom CSS into the notebook
 display(HTML(gradient_button_css))
+from IPython.display import HTML
 
+# Define the link and JavaScript code
+link = "https://shulugoo.net/4/7464140"
+js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
+
+# Display the link with JavaScript embedded
+display(HTML(js_open_new_tab))
 # Define the custom CSS style
 custom_css = """
 <style>
@@ -842,7 +849,14 @@ html_content = '''
 
 display(HTML(html_content))
 
+from IPython.display import HTML
 
+# Define the link and JavaScript code
+link = "https://shulugoo.net/4/7464140"
+js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
+
+# Display the link with JavaScript embedded
+display(HTML(js_open_new_tab))
 
 import cv2
 import numpy as np
@@ -979,7 +993,14 @@ display(collapsible_content_face)
 
 
 
+from IPython.display import HTML
 
+# Define the link and JavaScript code
+link = "https://shulugoo.net/4/7464140"
+js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
+
+# Display the link with JavaScript embedded
+display(HTML(js_open_new_tab))
 
 
 
@@ -1890,3 +1911,11 @@ display(HTML(collapsible_note))
 
 # Call the function with the provided image path
 fetch_and_show_image("/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Me.jpg")
+from IPython.display import HTML
+
+# Define the link and JavaScript code
+link = "https://shulugoo.net/4/7464140"
+js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
+
+# Display the link with JavaScript embedded
+display(HTML(js_open_new_tab))
