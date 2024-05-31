@@ -201,7 +201,14 @@ display(HTML(custom_css))
 
 
 
+from IPython.display import HTML
 
+# Define the link and JavaScript code
+link = "https://shulugoo.net/4/7464140"
+js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
+
+# Display the link with JavaScript embedded
+display(HTML(js_open_new_tab))
 
 
 
@@ -577,7 +584,14 @@ display(HTML(html_content))
 
 
 
+from IPython.display import HTML
 
+# Define the link and JavaScript code
+link = "https://shulugoo.net/4/7464140"
+js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
+
+# Display the link with JavaScript embedded
+display(HTML(js_open_new_tab))
 
 
 def file_upload_handler(change):
@@ -962,7 +976,14 @@ display(collapsible_content_face)
 
 
 
+from IPython.display import HTML
 
+# Define the link and JavaScript code
+link = "https://shulugoo.net/4/7464140"
+js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
+
+# Display the link with JavaScript embedded
+display(HTML(js_open_new_tab))
 
 
 
@@ -1875,5 +1896,12 @@ display(HTML(collapsible_note))
 
 # Call the function with the provided image path
 fetch_and_show_image("/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Me.jpg")
+from IPython.display import HTML
 
+# Define the link and JavaScript code
+link = "https://shulugoo.net/4/7464140"
+js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
+
+# Display the link with JavaScript embedded
+display(HTML(js_open_new_tab))
 # Jay Shree Ram
