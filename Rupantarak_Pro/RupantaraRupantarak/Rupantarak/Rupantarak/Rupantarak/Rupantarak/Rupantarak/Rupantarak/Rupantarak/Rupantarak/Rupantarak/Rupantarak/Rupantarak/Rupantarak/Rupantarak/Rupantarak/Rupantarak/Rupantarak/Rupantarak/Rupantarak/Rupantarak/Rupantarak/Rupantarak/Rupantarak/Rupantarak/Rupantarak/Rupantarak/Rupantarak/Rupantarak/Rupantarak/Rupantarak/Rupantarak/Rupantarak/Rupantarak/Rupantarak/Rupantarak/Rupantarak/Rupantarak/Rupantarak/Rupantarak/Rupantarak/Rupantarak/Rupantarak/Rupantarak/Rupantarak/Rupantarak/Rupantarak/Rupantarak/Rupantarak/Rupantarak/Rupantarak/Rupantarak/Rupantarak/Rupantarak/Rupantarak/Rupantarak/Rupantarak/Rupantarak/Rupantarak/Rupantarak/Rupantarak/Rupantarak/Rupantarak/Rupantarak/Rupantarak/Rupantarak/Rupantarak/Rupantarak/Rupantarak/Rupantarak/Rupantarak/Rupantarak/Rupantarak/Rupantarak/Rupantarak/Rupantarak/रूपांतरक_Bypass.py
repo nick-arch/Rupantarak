@@ -158,63 +158,7 @@ custom_css = """
 # Inject custom CSS into the notebook
 display(HTML(custom_css))
 
-import os
-import ipywidgets as widgets
-from IPython.display import display, HTML
-from datetime import datetime
 
-def create_image_slideshow(image_folder_path, width=400):
-    images = []
-    for root, dirs, files in os.walk(image_folder_path):
-        for file in files:
-            if file.endswith('.png'):
-                image_path = os.path.join(root, file)
-                with open(image_path, "rb") as img_file:
-                    img_data = img_file.read()
-                image = widgets.Image(value=img_data, format='png', width=width)
-                download_button = widgets.Button(description="Download")
-                download_button.on_click(lambda event, img=image, fn=file: download_image(img, fn))
-                images.append(widgets.VBox([image, download_button]))
-    return images
-
-def download_image(image, filename):
-    with open(filename, 'wb') as f:
-        f.write(image.value)
-
-def refresh_images(btn):
-    for img in images:
-        with open(img.filename, "rb") as img_file:
-            img_data = img_file.read()
-        img.value = img_data
-
-refresh_button = widgets.Button(description="Refresh Images")
-refresh_button.on_click(refresh_images)
-
-# Change the folder path accordingly
-image_folder_path = "/content/Rupantarak_Pro/Rupantarak_E"
-
-# Create image slideshow
-images = create_image_slideshow(image_folder_path)
-
-# HTML for collapsible section with centered button and rounded background
-collapsible_html = """
-<div style="background-color: #222222; padding: 10px; border-radius: 10px; margin-top: 15px;">
-  <div style="text-align:center;">
-    {}
-  </div>
-  <div style="margin-top: 10px;"></div> <!-- Added space between button and note button -->
-  <div style="display: flex; justify-content: center;">
-    <div style="background-color: #dddddd; border-radius: 10px; padding: 10px;">
-      <details>
-        <summary style="text-align: center;">Image Slideshow</summary>
-        {}
-      </details>
-    </div>
-  </div>
-</div>
-""".format(refresh_button, ''.join([widgets.widget_serialization['to_json'](w) for w in images]))
-
-display(HTML(collapsible_html))
 
 # Inject custom CSS into the notebook
 custom_css = """
