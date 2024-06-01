@@ -843,6 +843,11 @@ progress_bar = widgets.FloatProgress(value=0, min=0, max=100, style={'bar_color'
 # Create a container to hold the button, accordion, and progress bar
 container = widgets.VBox([button_and_accordion_container, progress_bar], layout=widgets.Layout(justify_content='center', align_items='center'))
 
+import ipywidgets as widgets
+
+# Create an output widget
+output = widgets.Output()
+
 # Display the container and output widget
 display(container)
 display(output)
