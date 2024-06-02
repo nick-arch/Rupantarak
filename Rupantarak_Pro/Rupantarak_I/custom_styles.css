@@ -1,6 +1,6 @@
-# Custom CSS for gradient styles
-gradient_button_css = """
-<style>
+/* custom_styles.css */
+
+/* Custom CSS for gradient styles */
 body {
     background: linear-gradient(135deg, #111111, #111111);
 }
@@ -35,6 +35,7 @@ button {
     transition-duration: 0.4s; /* Transition duration for hover effect */
     width: 300px; /* Fixed width */
 }
+
 button:hover {
     background-color: #abedd8;
     color: black;
@@ -42,30 +43,30 @@ button:hover {
 
 /* Your custom CSS styles for the radio buttons */
 .widget-radio-box label {
-  background: linear-gradient(to right, #0D47A1, #8E24AA); /* Gradient from #800080 to #2196f3 */
-  border-radius: 20px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  color: white;
-  margin-bottom: 10px; /* Add margin between options */
-  width: 70px; /* Set width */
+    background: linear-gradient(to right, #0D47A1, #8E24AA); /* Gradient from #800080 to #2196f3 */
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+    margin-bottom: 10px; /* Add margin between options */
+    width: 70px; /* Set width */
 }
 
 .gradient-link {
-  background-image: linear-gradient(to right, #222222, #222222);
-  border: none;
-  border-radius: 10px;
-  padding: 10px 10px;
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+    background-image: linear-gradient(to right, #222222, #222222);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .gradient-link:hover {
-  background-image: linear-gradient(to right, #0D47A1, #8E24AA);
-  box-shadow: 0px 0px 10px 0px rgba(181, 102, 184, 0.5);
+    background-image: linear-gradient(to right, #0D47A1, #8E24AA);
+    box-shadow: 0px 0px 10px 0px rgba(181, 102, 184, 0.5);
 }
 
 .custom-accordion {
@@ -98,11 +99,13 @@ button:hover {
     margin: 0px;
     width: auto;
 }
+
 .custom-image {
     max-width: 100%;
     max-height: 100%;
     border-radius: 10px;
 }
+
 .custom-download-button {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
@@ -117,6 +120,7 @@ button:hover {
     width: 100%;
     margin-top: 10px;
 }
+
 .image-slider {
     display: flex;
     overflow-x: auto;
@@ -135,36 +139,4 @@ button:hover {
     padding: 5px 10px;
     border-radius: 10px;
     margin-bottom: 5px;
-}
-</style>
-"""
-
-# Inject custom CSS into the notebook
-display(HTML(gradient_button_css))
-
-# Define the custom CSS style
-custom_css = """
-<style>
-/* Increase font size for labels */
-.widget-label {
-    font-size: 14px !important; /* Adjust the font size as needed */
-}
-
-/* Increase font size and make button text bold */
-.widget-button {
-    font-size: 16px !important; /* Adjust the font size as needed */
-    font-weight: bold !important;
-}
-
-/* Increase font size for upload box text */
-.upload-box-text {
-    font-size: 14px !important; /* Adjust the font size as needed */
-}
-
-
-</style>
-"""
-
-# Inject the custom CSS into the notebook
-display(HTML(custom_css))
-
+    }
