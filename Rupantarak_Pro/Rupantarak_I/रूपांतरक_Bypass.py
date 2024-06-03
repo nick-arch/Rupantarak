@@ -31,7 +31,7 @@ from IPython.display import display, HTML
 def display_logo():
     logo_html = """
     <div style='text-align: center;'>
-        <h1 style='font-family: Andika, sans-serif; font-size: 50px; background: -webkit-linear-gradient(left, #5C0000, #8B0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span style='color: #ff0066;'>र</span><span style='color: #ff6f00;'>ू</span><span style='color: #ffd700;'>प</span><span style='color: #4caf50;'>ा</span><span style='color: #2196f3;'>ं</span><span style='color: #9c27b0;'>त</span><span style='color: #ff5722;'>र</span><span style='color: #FFC0CB;'>क</span><span style='color: #2196f3; font-size: 22px;'>~ Rupantarak</span><br>
+        <h1 style='font-family: Andika, sans-serif; font-size: 50px; background: -webkit-linear-gradient(left, #FA8072, #F5F5DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'><span style='color: #ff0066;'>र</span><span style='color: #ff6f00;'>ू</span><span style='color: #ffd700;'>प</span><span style='color: #4caf50;'>ा</span><span style='color: #2196f3;'>ं</span><span style='color: #9c27b0;'>त</span><span style='color: #ff5722;'>र</span><span style='color: #FFC0CB;'>क</span><span style='color: #2196f3; font-size: 22px;'>~ Rupantarak</span><br>
             <span style='font-size: 25px;'>Bypass</span><br>
         </h1>
     </div>
@@ -49,7 +49,7 @@ custom_css = """
     width: 200px !important; /* Set width to 350px */
     margin: 10px auto !important; /* Center the widget horizontally */
     border-radius: 5px !important; /* Rounded corners */
-    background: linear-gradient(to right, #333333, #333333) !important; /* Gradient background */
+    background: linear-gradient(to right, #FA8072, #F5F5DC) !important; /* Gradient background */
     padding: 10px !important; /* Padding for the header */
     z-index: 9999 !important; /* Ensure the widget appears in front of other elements */
 }
@@ -144,7 +144,7 @@ custom_css = """
 <style>
 /* Your custom CSS styles for the radio buttons */
 .widget-radio-box label {
-  background: linear-gradient(to right, #5C0000, #8B0000); /* Gradient from #800080 to #2196f3 */
+  background: linear-gradient(to right, #FA8072, #F5F5DC); /* Gradient from #800080 to #2196f3 */
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -219,7 +219,7 @@ body {
 }
 
 button {
-    background: linear-gradient(to right, #5C0000, #8B0000);
+    background: linear-gradient(to right, #FA8072, #F5F5DC);
     border-radius: 20px;
     border: none;
     color: white;
