@@ -1,3 +1,4 @@
+
 # @markdown
 
 import base64
@@ -33,7 +34,7 @@ gradient_button_css = """
 }
 .widget-container {
     border: none !important;
-    background-color: #F5F5DC !important; /* Background color changed */
+    background-color: #383838 !important; /* Background color changed */
     box-shadow: none !important;
     padding: 10px; /* Added padding */
     border-radius: 5px; /* Added border-radius */
@@ -82,16 +83,16 @@ def clone_repo_with_progress(repo_url):
         # Create a progress bar widget with specific width and margin
         progress_bar = IntProgress(min=0, max=100, value=0, bar_style='info')
         progress_bar.style.description_width = 'initial'
-        progress_bar.layout.margin = '10px 0px 0px 60px'  # Add 10px margin up, 100px left
+        progress_bar.layout.margin = '10px 0px 0px 10px'  # Add 10px margin up, 100px left
         progress_bar.layout.width = '200px'  # Set the width to 200px
 
         # Create a label for the progress bar with bold text
         progress_label = HTML("<b>Cloning रूपांतरक ~ Rupantarak:</b>")
-        progress_label.layout.margin = '0px 0px 0px 60px'  # Add 100px margin left
+        progress_label.layout.margin = '0px 0px 0px 10px'  # Add 100px margin left
 
         # Create a label for the live percentage
         percentage_label = HTML("0%")
-        percentage_label.layout.margin = '0px 0px 10px 60px'  # Add 10px margin down, 100px left
+        percentage_label.layout.margin = '0px 0px 0px 10px'  # Add 10px margin down, 100px left
 
         # Combine the labels and progress bar in a vertical box
         vbox = VBox([progress_label, progress_bar, percentage_label])
@@ -134,7 +135,7 @@ clone_repo_with_progress(repo_url)
 # Note 1
 html_content_1 = '''
 <div style="display: flex; justify-content: center; margin-top: 10px; margin-bottom: 10px;">
-  <div style="width: 400px; margin: 10px 0;">
+  <div style="width: 350px; margin: 10px 0;">
     <details id="details1">
       <summary id="summary1" style="border: none; border-radius: 8px; background: linear-gradient(to right, #FA8072, #F5F5DC); color: black; padding: 3px; text-align: center; cursor: pointer; list-style: none; font-weight: bold; margin-bottom: 10px;">
         <span id="arrow1">➼</span> <b>Must-Knows</b>
