@@ -20,6 +20,7 @@ gdrive_urls = [
     'https://drive.google.com/file/d/10z1_ukVfDNQxB96MmTs34VUAd5UkgA-u/view?usp=drivesdk',
     'https://drive.google.com/file/d/10z1_ukVfDNQxB96MmTs34VUAd5UkgA-u/view?usp=drivesdk',
     'https://drive.google.com/file/d/10Eih3BT8wtdtqlIik5S0fy4Tx6RBJ3z3/view?usp=drivesdk',
+    'https://drive.google.com/file/d/10z1_ukVfDNQxB96MmTs34VUAd5UkgA-u/view?usp=drivesdk',
     'https://drive.google.com/file/d/10z1_ukVfDNQxB96MmTs34VUAd5UkgA-u/view?usp=drivesdk'
 ]
 
@@ -28,7 +29,7 @@ save_paths = [
     '/content/Rupantarak/Rupantarak_Pro/Rupantarak_O/Rupantarak_Output.png',
     '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Me.jpg',
     '/content/Rupantarak/Rupantarak_Pro/Rupantarak_T/Rupantarak_T1.png',
-
+    '/content/Rupantarak/Rupantarak_Pro/Rupantarak_M/trimmed_video.mp4',
 ]
 
 for url, path in zip(gdrive_urls, save_paths):
