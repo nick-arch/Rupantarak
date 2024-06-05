@@ -1,3 +1,93 @@
+
+
+import base64
+import requests
+from IPython.display import display, HTML
+
+# Function to encode image to base64
+def encode_image_to_base64(url):
+    response = requests.get(url)
+    encoded_image = base64.b64encode(response.content).decode('utf-8')
+    return encoded_image
+
+# Public Google Drive URL for the image
+image_url = "https://drive.google.com/uc?id=11C4SDoWfvJOXeNn0Luv0YZGuHaJrHkBH"
+
+# Encode the image from the URL to base64
+encoded_image = encode_image_to_base64(image_url)
+
+# Define the CSS style for the image
+image_style = """
+<style>
+.centered-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 10px solid #444444;
+    border-radius: 50%; /* Set border-radius to 50% to make it a circle */
+    overflow: hidden; /* Ensure the border touches the corners */
+}
+</style>
+"""
+
+# Define the HTML markup for the image
+image_html = f"""
+<div style="text-align: center;">
+  <img src="data:image/jpeg;base64,{encoded_image}" class="centered-image" width="100">
+</div>
+"""
+
+# Display the image
+display(HTML(image_style + image_html))
+import ipywidgets as widgets
+from IPython.display import display, HTML
+
+# Define the paragraph style with centered alignment and width
+paragraph_style = """
+<div style="width: 350px; margin: auto;">
+  <p style="font-size: 15px; color: #F5F5DC; font-weight: bold; text-align: center;">I'm Vishal Sharma, and I've created a modified GUI version of the tool "रूपांतरक ~ Rupantarak," which I copied from the original Roop repository by "Somdev Sangwan", enhancing it with several improved filters.</p>
+</div>
+"""
+
+# Define the CSS style for the buttons
+button_style = """
+<style>
+.rounded-button {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 22px;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 150px;
+    height: 50px;
+    background: linear-gradient(45deg, #24292e, #6e5494);
+    font-weight: bold;
+}
+</style>
+"""
+
+# HTML markup for the buttons
+html_buttons = """
+<div style="display: flex; justify-content: center;">
+  <button class="rounded-button" onclick="window.open('https://github.com/s0md3v/roop.git','_blank')">Original Roop Repository</button>
+  <button class="rounded-button" onclick="window.open('https://github.com/nick-arch/Rupantarak.git','_blank')">Your Rupantarak Repository</button>
+</div>
+"""
+
+# Combine the paragraph, style, and buttons
+html_content = paragraph_style + button_style + html_buttons
+
+# Display the content
+display(HTML(html_content))
+
+
+
+
+
 from IPython.display import HTML
 import webbrowser
 
@@ -52,7 +142,7 @@ gradient_button_css = """
   border: none;
   border-radius: 10px;
   padding: 10px 10px;
-  color: #fff;
+  color: #F5F5DC;
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
@@ -181,4 +271,3 @@ form_container = widgets.VBox([
 
 # Display the form container
 display(form_container)
-
