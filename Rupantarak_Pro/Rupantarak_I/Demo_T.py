@@ -174,7 +174,7 @@ def download_image_from_gdrive(gdrive_url, save_path):
 gdrive_urls = [
     'https://drive.google.com/file/d/10z1_ukVfDNQxB96MmTs34VUAd5UkgA-u/view?usp=drivesdk',
     'https://drive.google.com/file/d/10w9Yu7yx6-klXubAkeb0BL1XwKPh2c-4/view?usp=drivesdk',
-    'https://drive.google.com/file/d/10xIVD7CDWWZAeCzQQg2kFUBJXiFE9Um0/view?usp=drivesdk'
+    'https://drive.google.com/file/d/10Eih3BT8wtdtqlIik5S0fy4Tx6RBJ3z3/view?usp=drivesdk'
 ]
 
 # Use Colab's file system path
