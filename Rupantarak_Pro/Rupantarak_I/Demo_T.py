@@ -19,13 +19,16 @@ def download_image_from_gdrive(gdrive_url, save_path):
 gdrive_urls = [
     'https://drive.google.com/file/d/10z1_ukVfDNQxB96MmTs34VUAd5UkgA-u/view?usp=drivesdk',
     'https://drive.google.com/file/d/10w9Yu7yx6-klXubAkeb0BL1XwKPh2c-4/view?usp=drivesdk',
+    'https://drive.google.com/file/d/10Eih3BT8wtdtqlIik5S0fy4Tx6RBJ3z3/view?usp=drivesdk',
     'https://drive.google.com/file/d/10Eih3BT8wtdtqlIik5S0fy4Tx6RBJ3z3/view?usp=drivesdk'
 ]
 
 save_paths = [
-    '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Rupantarak_B_0.png',
+    '/content/Rupantarak/Rupantarak_Pro/Rupantarak_B/Rupantarak_B_0.png',
     '/content/Rupantarak/Rupantarak_Pro/Rupantarak_O/Rupantarak_Output.png',
     '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Me.jpg',
+    '/content/Rupantarak/Rupantarak_Pro/Rupantarak_T/Rupantarak_T1.png 
+
 ]
 
 for url, path in zip(gdrive_urls, save_paths):
