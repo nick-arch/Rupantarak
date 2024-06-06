@@ -121,7 +121,7 @@ button:active {
     width: 210px !important;
     margin: 10px auto !important;
     border-radius: 5px !important;
-    background: linear-gradient(to right, #FA8072, #F5F5DC) !important;
+    background: linear-gradient(to right, #444444, #444444) !important;
     padding: 10px !important;
     z-index: 9999 !important;
 }
@@ -516,7 +516,7 @@ def display_popup_message(message, background_color='#F5F5DC', border_color='#FA
             background-color: {background_color};
             border: 2px solid {border_color};
             border-radius: 10px;
-            width: 200px;
+            width: 250px;
             height: 200px;
             display: flex;
             align-items: center;
