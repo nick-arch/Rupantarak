@@ -728,7 +728,7 @@ def run_process(_):
 
                 # Display image preview
                 html_code = f"""
-                <div style="background-color: #111111; padding: 20px; text-align: center;">
+                <div style="background-color: #383838; padding: 20px; text-align: center;">
                     <details>
                         <summary style="font-weight: bold; background-color: #222222; padding: 10px; border-radius: 5px;">Click to Preview Image {index + 1}</summary>
                         <div style="background-color: #222222; border-radius: 5px; padding: 10px; max-width: 300px; margin: 0 auto;">
