@@ -357,8 +357,8 @@ from IPython.display import display, HTML, Javascript
 
 # Create the reset button
 reset_button = widgets.Button(
-    description="Reset & Delete All Uploads & Temp Files",
-    layout=widgets.Layout(width='350px', height='55px', margin='10px auto'),
+    description="Reset & Delete All Uploaded Target's",
+    layout=widgets.Layout(width='300px', height='55px', margin='10px auto'),
     style={'button_color': 'blue', 'font_weight': 'bold'}
 )
 
