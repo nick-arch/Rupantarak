@@ -443,11 +443,3 @@ html_code = """
 display(HTML(html_code))
 
 
-# HTML code for divider and headings
-html_code = """
-<div style="width: 300px; height: 10px; background-color: #222222; border-radius: 5px; margin: 0 auto;"></div>
-</div>
-"""
-
-# Display HTML
-display(HTML(html_code))
