@@ -11,48 +11,7 @@ from IPython.display import display, HTML
 import ipywidgets as widgets
 from PIL import Image as PILImage
 
-# Function to display a popup message
-def display_popup_message(message, background_color='#F5F5DC', border_color='#FA8072', text_color='#333333'):
-    if message.startswith("Success"):
-        text_color = '#008000'  # Green color for success messages
-    popup_html = f"""
-    <style>
-        .popup-message {{
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: {background_color};
-            border: 2px solid {border_color};
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            z-index: 9999;
-        }}
-        .popup-message h2 {{
-            color: #ff0066;
-        }}
-        .popup-message p {{
-            color: {text_color};
-        }}
-    </style>
-    <div class="popup-message">
-        <h2>{message}</h2>
-    </div>
-    <script>
-        setTimeout(function(){{
-            var popup = document.querySelector('.popup-message');
-            if (popup) {{
-                popup.remove();
-            }}
-        }}, 4000);  // Hide popup after 4 seconds
-    </script>
-    """
-    display(HTML(popup_html))
 
-# Display the initial popup message
-display_popup_message("रूपांतरक ~ Bypass Unlocked Successfully", background_color='#FA8072')
-# Custom CSS for gradient styles
 gradient_button_css = """
 <style>
 
@@ -543,3 +502,46 @@ output = widgets.Output()
 # Display the container and output widget
 display(container)
 display(output)
+
+# Function to display a popup message
+def display_popup_message(message, background_color='#F5F5DC', border_color='#FA8072', text_color='#333333'):
+    if message.startswith("Success"):
+        text_color = '#008000'  # Green color for success messages
+    popup_html = f"""
+    <style>
+        .popup-message {{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: {background_color};
+            border: 2px solid {border_color};
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            z-index: 9999;
+        }}
+        .popup-message h2 {{
+            color: #ff0066;
+        }}
+        .popup-message p {{
+            color: {text_color};
+        }}
+    </style>
+    <div class="popup-message">
+        <h2>{message}</h2>
+    </div>
+    <script>
+        setTimeout(function(){{
+            var popup = document.querySelector('.popup-message');
+            if (popup) {{
+                popup.remove();
+            }}
+        }}, 4000);  // Hide popup after 4 seconds
+    </script>
+    """
+    display(HTML(popup_html))
+
+# Display the initial popup message
+display_popup_message("रूपांतरक ~ Bypass Unlocked Successfully", background_color='#FA8072')
+# Custom CSS for gradient styles
