@@ -22,6 +22,8 @@ from IPython.display import display, Markdown
 from IPython.display import HTML
 from IPython.display import Javascript
 from time import sleep
+
+from ipywidgets import HBox
 from google.colab import auth
 from google.colab import drive
 import gdown
