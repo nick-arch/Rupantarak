@@ -26,6 +26,8 @@ from googleapiclient.http import MediaFileUpload
 from IPython.display import display, HTML
 import ipywidgets as widgets
 
+
+
 # Custom CSS for gradient styles
 gradient_button_css = """
 <style>
@@ -46,7 +48,7 @@ gradient_button_css = """
 }
 
 button {
-    background: linear-gradient(to right, #FF007F, #800080); /* Dark grey gradient */
+    background: linear-gradient(to right, #444444, #555555); /* Dark grey gradient */
     border-radius: 20px; /* Rounded corners */
     border: none; /* No border */
     color: white; /* Text color */
@@ -82,7 +84,7 @@ button:active {
 
 /* Your custom CSS styles for the radio buttons */
 .widget-radio-box label {
-  background: linear-gradient(to right, #FF007F, #800080); /* Gradient from dark grey to lighter grey */
+  background: linear-gradient(to right, #444444, #555555); /* Gradient from dark grey to lighter grey */
   border-radius: 20px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
@@ -133,7 +135,7 @@ button:active {
 }
 
 .custom-accordion {
-    width: 300px !important;
+    width: 350px !important;
     margin: 10px auto !important;
     border-radius: 5px !important;
     background: linear-gradient(to right, #222222, #222222) !important;
