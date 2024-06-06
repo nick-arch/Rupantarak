@@ -135,7 +135,7 @@ button:active {
 }
 
 .custom-accordion {
-    width: 250px !important;
+    width: 300px !important;
     margin: 10px auto !important;
     border-radius: 5px !important;
     background: linear-gradient(to right, #222222, #222222) !important;
@@ -314,7 +314,7 @@ def run_process(_):
 # Create radio buttons for CPU and CUDA
 execution_provider_radio = widgets.RadioButtons(
     options=['CPU', 'CUDA'],
-    description='Execution Provider:',
+    description='Select GPU,
     disabled=False,
     layout={'width': 'max-content'}
 )
