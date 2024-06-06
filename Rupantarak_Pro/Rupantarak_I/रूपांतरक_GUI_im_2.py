@@ -138,7 +138,7 @@ button:active {
     width: 300px !important;
     margin: 10px auto !important;
     border-radius: 5px !important;
-    background: linear-gradient(to right, #222222, #222222) !important;
+    background: linear-gradient(to right, #444444, #444444) !important;
     padding: 10px !important;
     z-index: 9999 !important;
 }
