@@ -784,3 +784,85 @@ js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
 
 # Display the link with JavaScript embedded
 display(HTML(js_open_new_tab))
+
+
+import os
+import ipywidgets as widgets
+from IPython.display import display, HTML, Javascript
+
+# Create the reset button
+reset_button = widgets.Button(
+    description="Reset & Delete All Uploads & Temp Files",
+    layout=widgets.Layout(width='350px', height='55px', margin='10px auto'),
+    style={'button_color': 'blue', 'font_weight': 'bold'}
+)
+
+# Function to delete all files in the folder
+def delete_all_files(b):
+    folder_path = "/content/Rupantarak/Rupantarak_Pro/Rupantarak_T"
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            pass
+    display_popup_message()
+
+# Function to display a popup with gradient interface
+def display_popup_message():
+    popup_html = """
+    <style>
+        .popup-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #FA8072, #F5F5DC);
+            border: 10px solid #F5F5DC;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            z-index: 9999;
+        }
+        .popup-container h2 {
+            color: #ff0066;
+        }
+        .popup-container p {
+            color: #333333;
+        }
+    </style>
+    <div class="popup-container">
+        <h2>All files have been deleted.</h2>
+        <p>This popup will close automatically in 10 seconds.</p>
+    </div>
+    <script>
+        setTimeout(function() {
+            var element = document.querySelector('.popup-container');
+            element.parentNode.removeChild(element);
+        }, 3000);
+    </script>
+    """
+    display(HTML(popup_html))
+
+# Attach the function to the button click event
+reset_button.on_click(delete_all_files)
+
+# Create a container to center the button
+button_container = widgets.HBox(
+    [reset_button],
+    layout=widgets.Layout(justify_content='center')
+)
+
+# Display the button container
+display(button_container)
+
+
+from IPython.display import HTML
+
+# Define the link and JavaScript code
+link = "https://shulugoo.net/4/7464140"
+js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
+
+# Display the link with JavaScript embedded
+display(HTML(js_open_new_tab))
