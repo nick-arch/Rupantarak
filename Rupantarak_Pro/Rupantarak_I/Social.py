@@ -74,7 +74,7 @@ button_style = """
 html_buttons = """
 <div style="display: flex; justify-content: center;">
   <button class="rounded-button" onclick="window.open('https://github.com/s0md3v/roop.git','_blank')">Original Roop Repository</button>
-  <button class="rounded-button" onclick="window.open('https://github.com/nick-arch/Rupantarak.git','_blank')">Your Rupantarak Repository</button>
+  <button class="rounded-button" onclick="window.open('https://github.com/nick-arch/Rupantarak.git','_blank')">My Rupantarak Repository</button>
 </div>
 """
 
