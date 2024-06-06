@@ -314,7 +314,7 @@ def run_process(_):
 # Create radio buttons for CPU and CUDA
 execution_provider_radio = widgets.RadioButtons(
     options=['CPU', 'CUDA'],
-    description='Select GPU,
+    description='Select GPU',
     disabled=False,
     layout={'width': 'max-content'}
 )
