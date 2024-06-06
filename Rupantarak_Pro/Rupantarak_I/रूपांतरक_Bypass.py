@@ -503,10 +503,9 @@ output = widgets.Output()
 display(container)
 display(output)
 
-# Function to display a popup message
-def display_popup_message(message, background_color='#F5F5DC', border_color='#FA8072', text_color='#333333'):
-    if message.startswith("Success"):
-        text_color = '#008000'  # Green color for success messages
+from IPython.display import display, HTML
+
+def display_popup_message(message, background_color='#F5F5DC', border_color='#FA8072', text_color='#008000'):
     popup_html = f"""
     <style>
         .popup-message {{
@@ -517,15 +516,17 @@ def display_popup_message(message, background_color='#F5F5DC', border_color='#FA
             background-color: {background_color};
             border: 2px solid {border_color};
             border-radius: 10px;
-            padding: 20px;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             z-index: 9999;
         }}
         .popup-message h2 {{
-            color: #ff0066;
-        }}
-        .popup-message p {{
             color: {text_color};
+            margin: 0;
         }}
     </style>
     <div class="popup-message">
@@ -543,5 +544,4 @@ def display_popup_message(message, background_color='#F5F5DC', border_color='#FA
     display(HTML(popup_html))
 
 # Display the initial popup message
-display_popup_message("रूपांतरक ~ Bypass Unlocked Successfully", background_color='#FA8072')
-# Custom CSS for gradient styles
+display_popup_message("रूपांतरक ~ Bypass Unlocked Successfully", background_color='#F5F5DC')
