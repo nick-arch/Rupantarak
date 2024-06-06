@@ -340,7 +340,7 @@ def display_success_popup():
             z-index: 9999;
         }
         .popup h2 {
-            color: #00FF00; /* Green color for success text */
+            color: #2E8B57; /* Green color for success text */
         }
         .popup p {
             color: #333333;
@@ -359,8 +359,8 @@ def display_success_popup():
         }
     </style>
     <div class="popup" id="success-popup">
-        <h2>Deepfake Process Completed!</h2>
-        <p>The deepfake process has finished successfully.</p>
+        <h2>रूपांतरक~  Process Completed!</h2>
+        <p>The Rupantarak process has finished successfully.</p>
         <button onclick="document.getElementById('success-popup').style.display='none'">Close</button>
     </div>
     <script>
