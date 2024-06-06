@@ -130,6 +130,83 @@ centered_buttons_html = f"""
 # Display the centered buttons
 display(HTML(centered_buttons_html))
 
+
+
+from IPython.display import display, HTML
+import ipywidgets as widgets
+
+# Custom CSS for gradient styles
+gradient_button_css = """
+<style>
+.custom-accordion {
+    width: 380px !important;
+    margin: 10px auto !important;
+    border-radius: 5px !important;
+    background: linear-gradient(to right, #FA8072, #F5F5DC) !important;
+    padding: 10px !important;
+    z-index: 9999 !important;
+}
+
+.widget-container {
+    border: none !important;
+    background-color: linear-gradient(to right, #FA8072, #F5F5DC) !important;
+    box-shadow: none !important;
+    padding: 10px; /* Added padding */
+    border-radius: 5px; /* Added border-radius */
+}
+
+.custom-accordion .custom-content {
+    background-color: linear-gradient(to right, #FA8072, #F5F5DC) !important;
+    padding: 5px;
+}
+
+.custom-image-container {
+    background-color: linear-gradient(to right, #FA8072, #F5F5DC) !important;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0px;
+    width: auto;
+}
+.custom-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}
+
+</style>
+"""
+
+# Inject custom CSS into the notebook
+display(HTML(gradient_button_css))
+
+# PayPal integration script
+paypal_script = """
+<script src="https://www.paypal.com/sdk/js?client-id=BAAV8njGbz3QGKORLv3DqieB3kTnW-z4KT2sllTMdy9JtX4I_dwxhpzuMkJNwkA71YjxJHOThcfX_sJvXI&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+<div id="paypal-container-RSGF46P7UMRNW"></div>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "RSGF46P7UMRNW",
+  }).render("#paypal-container-RSGF46P7UMRNW")
+</script>
+"""
+
+# Create an HTML widget with the PayPal script
+paypal_widget = widgets.HTML(value=paypal_script)
+
+# Create an accordion to contain the widget
+accordion = widgets.Accordion(children=[paypal_widget])
+
+# Set the title of the accordion
+accordion.set_title(0, 'Support Development')
+
+# Apply custom styling to the accordion
+accordion.add_class("custom-accordion")
+
+# Display the accordion
+display(accordion)
+
+
 import ipywidgets as widgets
 from IPython.display import display, HTML
 import requests
