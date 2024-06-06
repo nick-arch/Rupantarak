@@ -597,7 +597,7 @@ image_html = fetch_and_show_face("/content/Rupantarak/Rupantarak_Pro/Rupantarak_
 image_output = widgets.HTML(value=image_html)
 
 # Define the refresh button with margin
-button = widgets.Button(description="Refresh Face", layout=widgets.Layout(width='auto', margin='10px auto 0 auto'))
+button = widgets.Button(description="Refresh Face", layout=widgets.Layout(width='auto', margin='0 auto 10px auto'))
 
 # Define the refresh function
 def refresh_face(btn):
@@ -610,9 +610,9 @@ button.on_click(refresh_face)
 # Display the refresh button with margin and face image
 display(widgets.VBox([image_output, widgets.HBox([button], layout=widgets.Layout(justify_content='center'))]))
 
-# HTML code for divider and headings
+# HTML code for divider and headings with margin
 html_code = """
-<div style="margin-top: 10px; width: 300px; height: 10px; background-color: #222222; border-radius: 5px; margin: 0 auto;"></div>
+<div style="margin-top: 10px; margin-bottom: 10px; width: 300px; height: 10px; background-color: #222222; border-radius: 5px; margin: 0 auto;"></div>
 """
 
 # Display HTML
