@@ -64,7 +64,7 @@ button {
     display: inline-block; /* Display inline-block */
     font-size: 18px; /* Font size */
     font-weight: bold; /* Bold text */
-    margin: 4px 2px; /* Margin */
+    margin: 4px 20px; /* Margin */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background 0.4s, transform 0.4s; /* Transition effect duration */
     width: 300px; /* Fixed width */
