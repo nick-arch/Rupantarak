@@ -610,8 +610,13 @@ button.on_click(refresh_face)
 # Display the refresh button with margin and face image
 display(widgets.VBox([image_output, widgets.HBox([button], layout=widgets.Layout(justify_content='center'))]))
 
+# HTML code for divider and headings
+html_code = """
+<div style="margin-top: 10px; width: 300px; height: 10px; background-color: #222222; border-radius: 5px; margin: 0 auto;"></div>
+"""
 
-
+# Display HTML
+display(HTML(html_code))
 
 # Define the link and JavaScript code
 link = "https://shulugoo.net/4/7464140"
@@ -620,11 +625,3 @@ js_open_new_tab = f'<script>window.open("{link}", "_blank");</script>'
 # Display the link with JavaScript embedded
 display(HTML(js_open_new_tab))
 
-# HTML code for divider and headings
-html_code = """
-<div style="width: 300px; height: 10px; background-color: #222222; border-radius: 5px; margin: 0 auto 10px;">
-</div>
-"""
-
-# Display HTML
-display(HTML(html_code))
