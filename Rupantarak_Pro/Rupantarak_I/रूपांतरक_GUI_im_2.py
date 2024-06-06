@@ -26,6 +26,187 @@ from googleapiclient.http import MediaFileUpload
 from IPython.display import display, HTML
 import ipywidgets as widgets
 
+# Custom CSS for gradient styles
+gradient_button_css = """
+<style>
+
+
+.progress {
+    width: 100%;
+    height: 30px;
+    background-color: #222222;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #FA8072, #F5F5DC);
+}
+
+button {
+    background: linear-gradient(to right, #FF007F, #800080); /* Dark grey gradient */
+    border-radius: 20px; /* Rounded corners */
+    border: none; /* No border */
+    color: white; /* Text color */
+    padding: 10px 20px; /* Padding */
+    text-align: center; /* Text alignment */
+    text-decoration: none; /* No text decoration */
+    display: inline-block; /* Display inline-block */
+    font-size: 18px; /* Font size */
+    font-weight: bold; /* Bold text */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background 0.4s, transform 0.4s; /* Transition effect duration */
+    width: 300px; /* Fixed width */
+}
+
+/* Hover effect */
+button:hover {
+    background: linear-gradient(to right, #555555, #666666); /* Slightly lighter gradient on hover */
+    transform: scale(1.05); /* Slightly increase size */
+}
+
+/* Click effect */
+button:active {
+    background: linear-gradient(to right, #FA8072, #F5F5DC); /* Darker gradient on click */
+    transform: scale(0.95); /* Slightly decrease size */
+}
+
+/* Container for the radio buttons */
+.widget-radio-box {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Your custom CSS styles for the radio buttons */
+.widget-radio-box label {
+  background: linear-gradient(to right, #FF007F, #800080); /* Gradient from dark grey to lighter grey */
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  color: white;
+  margin-bottom: 10px; /* Add margin between options */
+  width: 100px; /* Set width */
+  display: inline-block; /* Display as inline-block */
+  padding: 10px; /* Add padding */
+  text-align: center; /* Center text */
+}
+
+/* Hover effect */
+.widget-radio-box label:hover {
+  background: linear-gradient(to right, #555555, #666666); /* Slightly lighter gradient on hover */
+  transform: scale(1.05); /* Slightly increase size */
+}
+
+/* Active effect */
+.widget-radio-box label:active {
+  background: linear-gradient(to right, #FA8072, #F5F5DC); /* Darker gradient on click */
+  transform: scale(0.95); /* Slightly decrease size */
+}
+
+
+
+/* Selected radio button effect */
+.widget-radio-box input[type="radio"]:checked + label {
+  background: linear-gradient(to right, #FA8072, #F5F5DC); /* Different gradient for selected state */
+}
+
+
+
+.gradient-link {
+  background-image: linear-gradient(to right, #444444, #555555);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gradient-link:hover {
+  background-image: linear-gradient(to right, #FA8072, #F5F5DC);
+  box-shadow: 0px 0px 10px 0px rgba(181, 102, 184, 0.5);
+}
+
+.custom-accordion {
+    width: 300px !important;
+    margin: 10px auto !important;
+    border-radius: 5px !important;
+    background: linear-gradient(to right, #222222, #222222) !important;
+    padding: 10px !important;
+    z-index: 9999 !important;
+}
+
+
+
+
+.custom-download-button {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.widget-button {
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
+.rounded-heading {
+    background-color: #333333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+</style>
+"""
+
+# Inject custom CSS into the notebook
+display(HTML(gradient_button_css))
+
+# Define the custom CSS style
+custom_css = """
+<style>
+/* Increase font size for labels */
+.widget-label {
+    font-size: 14px !important; /* Adjust the font size as needed */
+}
+
+/* Increase font size and make button text bold */
+.widget-button {
+    font-size: 16px !important; /* Adjust the font size as needed */
+    font-weight: bold !important;
+}
+
+/* Increase font size for upload box text */
+.upload-box-text {
+    font-size: 14px !important; /* Adjust the font size as needed */
+}
+
+
+</style>
+"""
+
+# Inject the custom CSS into the notebook
+display(HTML(custom_css))
+
+
+
+
+
 # Function to upload image to Google Drive
 def upload_image_to_drive(image_file_path, file_name):
     auth.authenticate_user()
