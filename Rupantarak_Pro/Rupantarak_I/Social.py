@@ -139,7 +139,7 @@ import ipywidgets as widgets
 gradient_button_css = """
 <style>
 .custom-accordion {
-    width: 380px !important;
+    width: 350px !important;
     margin: 10px auto !important;
     border-radius: 5px !important;
     background: linear-gradient(to right, #FA8072, #F5F5DC) !important;
