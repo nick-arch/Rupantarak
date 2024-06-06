@@ -14,7 +14,15 @@ html_code = """
 # Display HTML
 display(HTML(html_code))
 
-
+from IPython.display import display, HTML, Javascript, clear_output
+import os
+import subprocess
+import time
+import base64
+from google.colab import auth
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+import ipywidgets as widgets
 
 import os
 import subprocess
@@ -254,7 +262,8 @@ def run_process(_):
             target_images = [os.path.join(target_images_path, file) for file in os.listdir(target_images_path) if file.endswith('.png')]
 
             if not target_images:
-                raise FileNotFoundError("No target images found in the directory.")
+                display_no_target_popup()
+                return  # Exit the function gracefully without raising an error
 
             for index, target_image in enumerate(target_images):
                 # Delete existing output files
@@ -307,9 +316,108 @@ def run_process(_):
                 """
 
                 display(HTML(html_code))
+
+            # Display success popup after all processes are complete
+            display_success_popup()
+        
         except Exception as e:
             display(HTML(f"<div style='color: red;'><strong>Error:</strong> {str(e)}</div>"))
 
+# Function to display a success popup
+def display_success_popup():
+    success_html = """
+    <style>
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #F5F5DC;
+            border: 2px solid #FA8072;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            z-index: 9999;
+        }
+        .popup h2 {
+            color: #00FF00; /* Green color for success text */
+        }
+        .popup p {
+            color: #333333;
+        }
+        .popup button {
+            background-color: #FA8072;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <div class="popup" id="success-popup">
+        <h2>Deepfake Process Completed!</h2>
+        <p>The deepfake process has finished successfully.</p>
+        <button onclick="document.getElementById('success-popup').style.display='none'">Close</button>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('success-popup').style.display = 'none';
+        }, 3000);
+    </script>
+    """
+    display(HTML(success_html))
+
+# Function to display a no target popup
+def display_no_target_popup():
+    no_target_html = """
+    <style>
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #F5F5DC;
+            border: 2px solid #FA8072;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            z-index: 9999;
+        }
+        .popup h2 {
+            color: #ff0066;
+        }
+        .popup p {
+            color: #333333;
+        }
+        .popup button {
+            background-color: #FA8072;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <div class="popup" id="no-target-popup">
+        <h2>No Target Images Found</h2>
+        <p>Please upload target images to proceed.</p>
+        <button onclick="document.getElementById('no-target-popup').style.display='none'">Close</button>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('no-target-popup').style.display = 'none';
+        }, 3000);
+    </script>
+    """
+    display(HTML(no_target_html))
 
 # Create radio buttons for CPU and CUDA
 execution_provider_radio = widgets.RadioButtons(
@@ -443,5 +551,3 @@ html_code = """
 
 # Display HTML
 display(HTML(html_code))
-
-
