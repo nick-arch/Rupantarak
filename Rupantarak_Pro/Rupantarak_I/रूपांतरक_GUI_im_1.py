@@ -480,7 +480,6 @@ import numpy as np
 from IPython.display import display, HTML, clear_output
 import base64
 import ipywidgets as widgets
-from ipywidgets import VBox  # Import VBox
 
 def fetch_and_show_face(image_path):
     # Load the image
@@ -565,43 +564,49 @@ def fetch_and_show_face(image_path):
 
     return image_html
 
+# Function to display a success refresh popup
+def display_success_refresh_popup():
+    popup_html = """
+    <div class="success-popup">
+        <p>Face refreshed successfully!</p>
+    </div>
+    <style>
+        .success-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #F5F5DC;
+            border: 2px solid #FA8072;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .success-popup p {
+            color: #333333;
+        }
+    </style>
+    <script>
+        setTimeout(function(){ document.querySelector('.success-popup').remove(); }, 3000);
+    </script>
+    """
+    display(HTML(popup_html))
+
 # Display the initial face image
 image_html = fetch_and_show_face("/content/Rupantarak/Rupantarak_Pro/Rupantarak_S/Rupantarak_S.png")
 image_output = widgets.HTML(value=image_html)
 
 # Define the refresh button
-button = widgets.Button(description="Refresh Face")
+button = widgets.Button(description="Refresh Face", layout=widgets.Layout(width='auto', margin='0 auto'))
 
 def refresh_face(btn):
     image_output.value = fetch_and_show_face("/content/Rupantarak/Rupantarak_Pro/Rupantarak_S/Rupantarak_S.png")
+    display_success_refresh_popup()
 
 button.on_click(refresh_face)
 
-# Create a VBox to contain the button and the image output with a 10px margin
-collapsible_content_face = VBox([image_output, button], layout=widgets.Layout(align_items='center', margin='10px 0'))
-
-# Create a collapsible button for the face image
-collapsible_button_face = widgets.Button(description="Face Confirmation ~ Hide & Show", layout=widgets.Layout(width='auto', height='50px'))
-collapsible_button_face.add_class("note-button")  # Apply custom CSS class
-
-# Initially show content
-collapsible_content_face.layout.display = 'flex'
-
-# Define the toggle function for the face image section
-def toggle_content_face(b):
-    if collapsible_content_face.layout.display == 'none':
-        collapsible_content_face.layout.display = 'flex'
-    else:
-        collapsible_content_face.layout.display = 'none'
-
-# Assign the toggle function to the button click event for the face image section
-collapsible_button_face.on_click(toggle_content_face)
-
-# Display the toggle button for the face image section
-display(HBox([collapsible_button_face], layout=widgets.Layout(justify_content='center')))
-
-# Display the collapsible content for the face image section
-display(collapsible_content_face)
+# Display the refresh button and face image
+display(widgets.VBox([image_output, widgets.HBox([button], layout=widgets.Layout(justify_content='center'))]))
 
 
 
