@@ -112,7 +112,8 @@ def run_extracted_file():
     extracted_file_path = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/unzipped/रूपांतरक_Bypass.py'
     if os.path.exists(extracted_file_path):
         try:
-            %run $extracted_file_path
+            with open(extracted_file_path, 'r') as file:
+                exec(file.read())
         except Exception as e:
             print(f"Error running file: {e}")
     else:
