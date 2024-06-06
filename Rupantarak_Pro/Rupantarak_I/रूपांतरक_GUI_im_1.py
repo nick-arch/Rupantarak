@@ -596,17 +596,19 @@ def display_success_refresh_popup():
 image_html = fetch_and_show_face("/content/Rupantarak/Rupantarak_Pro/Rupantarak_S/Rupantarak_S.png")
 image_output = widgets.HTML(value=image_html)
 
-# Define the refresh button
 # Define the refresh button with margin
 button = widgets.Button(description="Refresh Face", layout=widgets.Layout(width='auto', margin='10px auto 0 auto'))
-button.on_click(refresh_face)
 
-# Define the refresh button with margin
-button = widgets.Button(description="Refresh Face", layout=widgets.Layout(width='auto', margin='10px auto 0 auto'))
+# Define the refresh function
+def refresh_face(btn):
+    image_output.value = fetch_and_show_face("/content/Rupantarak/Rupantarak_Pro/Rupantarak_S/Rupantarak_S.png")
+    display_success_refresh_popup()
+
+# Assign the refresh function to the button click event
+button.on_click(refresh_face)
 
 # Display the refresh button with margin and face image
 display(widgets.VBox([image_output, widgets.HBox([button], layout=widgets.Layout(justify_content='center'))]))
-
 
 
 
