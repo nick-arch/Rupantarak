@@ -140,6 +140,7 @@ gradient_button_css = """
 <style>
 .custom-accordion {
     width: 350px !important;
+    color: #ffffff:
     margin: 10px auto !important;
     border-radius: 5px !important;
     background: linear-gradient(to right, #444444, #444444) !important;
