@@ -135,7 +135,7 @@ button:active {
 }
 
 .custom-accordion {
-    width: 350px !important;
+    width: 250px !important;
     margin: 10px auto !important;
     border-radius: 5px !important;
     background: linear-gradient(to right, #222222, #222222) !important;
