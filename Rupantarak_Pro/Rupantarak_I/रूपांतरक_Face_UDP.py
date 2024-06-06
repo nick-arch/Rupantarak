@@ -338,7 +338,7 @@ def load_image(image_path):
             image_base64 = base64.b64encode(image_file.read()).decode('utf-8')
             image_html = f'''
             <div style="background-color: #222222; border-radius: 5px; padding: 10px; text-align: center;">
-                <img src="data:image/png;base64,{image_base64}" style="max-width: 360px; height: auto; border-radius: 5px;" />
+                <img src="data:image/png;base64,{image_base64}" style="max-width: 330px; height: auto; border-radius: 5px;" />
             </div>
             '''
             return image_html
@@ -373,7 +373,7 @@ def process_video(video_path):
             video_base64 = base64.b64encode(video_file.read()).decode('utf-8')
             video_html = f'''
             <div style="background-color: #222222; border-radius: 5px; padding: 10px; text-align: center;">
-                <video width="360" height="auto" autoplay style="border-radius: 5px;">
+                <video width="330" height="auto" autoplay style="border-radius: 5px;">
                     <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -401,7 +401,7 @@ def fetch_files_from_path(directory_path):
             image_html = load_image(image_path)
             notes_html += f'''
             <div style="margin: 10px 0;">
-                <details style="width: 400px; margin: 0 auto;" open>
+                <details style="width: 350px; margin: 0 auto;" open>
                     <summary style="{summary_style}">Selected Source Image</summary>
                     {image_html}
                 </details>
@@ -414,7 +414,7 @@ def fetch_files_from_path(directory_path):
             video_html = process_video(video_path)
             notes_html += f'''
             <div style="margin: 10px 0;">
-                <details style="width: 400px; margin: 0 auto;" open>
+                <details style="width: 350px; margin: 0 auto;" open>
                     <summary style="{summary_style}">Selected Target Video</summary>
                     {video_html}
                 </details>
