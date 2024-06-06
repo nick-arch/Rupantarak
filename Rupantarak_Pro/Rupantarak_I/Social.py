@@ -142,26 +142,26 @@ gradient_button_css = """
     width: 350px !important;
     margin: 10px auto !important;
     border-radius: 5px !important;
-    background: linear-gradient(to right, #FA8072, #F5F5DC) !important;
+    background: linear-gradient(to right, #444444, #444444) !important;
     padding: 10px !important;
     z-index: 9999 !important;
 }
 
 .widget-container {
     border: none !important;
-    background-color: linear-gradient(to right, #FA8072, #F5F5DC) !important;
+    background-color: linear-gradient(to right, #444444, #444444) !important;
     box-shadow: none !important;
     padding: 10px; /* Added padding */
     border-radius: 5px; /* Added border-radius */
 }
 
 .custom-accordion .custom-content {
-    background-color: linear-gradient(to right, #FA8072, #F5F5DC) !important;
+    background-color: linear-gradient(to right, #444444, #444444) !important;
     padding: 5px;
 }
 
 .custom-image-container {
-    background-color: linear-gradient(to right, #FA8072, #F5F5DC) !important;
+    background-color: linear-gradient(to right, #444444, #444444) !important;
     padding: 10px;
     border-radius: 10px;
     text-align: center;
