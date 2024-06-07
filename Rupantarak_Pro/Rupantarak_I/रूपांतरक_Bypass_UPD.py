@@ -1,8 +1,4 @@
-import cv2
-import numpy as np
-from IPython.display import display, HTML, clear_output
-import base64
-import ipywidgets as widgets
+
 
 import subprocess
 import re
@@ -33,79 +29,7 @@ from google.colab import drive
 import gdown
 from IPython.display import display, Javascript
 from IPython.display import display, clear_output
-# Define the function to display the success popup
-# Define the function to display the success popup
-def display_success():
-    success_html = """
-    <style>
-    .success-popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, #222222, #222222); /* Popup background gradient */
-        border: 2px solid #222222;
-        border-radius: 10px;
-        padding: 20px;
-        text-align: center;
-        width: 250px; /* Set width */
-        color: #ffffff; /* Text color */
-        z-index: 9999; /* Ensure the popup appears in front of other widgets */
-    }
-    .success-popup h2 {
-        background: linear-gradient(to right, #00FF00, #008000); /* Green gradient */
-        font-weight: bold;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .success-popup p {
-        background: linear-gradient(to right, #FF007F, #800080); /* Pink-purple gradient */
-        font-weight: bold;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-    .arrow {
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 20px solid #00FF00; /* Arrow color */
-        animation: arrowPop 0.5s infinite alternate;
-    }
-    @keyframes arrowPop {
-        0% {bottom: -20px;}
-        100% {bottom: -15px;}
-    }
-    </style>
-    <div id="success-popup" class="success-popup">
-        <h2>रूपांतरक ~ Rupantarak Uncensored Unlocked Successfully!</h2> <!-- Success text green gradient -->
-        <h3>Upload Source Face & Target Images And Run Below Cell To Use The Tool...</h3> <!-- Other text pink-purple gradient -->
-        <div class="arrow"></div>
-    </div>
-    <script>
-    // Hide the popup after 5 seconds
-    setTimeout(function(){
-        var popup = document.getElementById('success-popup');
-        popup.style.display = 'none';
-    }, 5000);
 
-    // Show the popup when the page loads
-    window.onload = function() {
-        var popup = document.getElementById('success-popup');
-        popup.style.display = 'block';
-    };
-    </script>
-    """
-    global success_popup
-    success_popup = widgets.HTML(success_html)
-    display(success_popup)
-
-# Call the function to display the success popup
-display_success()
 
 
 # Custom CSS for gradient styles
@@ -547,6 +471,47 @@ def fetch_and_show_face(image_path):
 
     return image_html
 
+from IPython.display import HTML, Javascript
+
+from IPython.display import HTML, Javascript
+
+# Function to display a success refresh popup
+def display_success_refresh_popup():
+    popup_html = """
+    <div class="success-popup">
+        <p>Face refreshed successfully!</p>
+    </div>
+    <style>
+        .success-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #111111;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .success-popup p {
+            color: yellow; /* Yellow text */
+            font-weight: bold; /* Make text bold */
+            background: -webkit-linear-gradient(#FFFF00, #FFD700); /* Yellow gradient for text */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+    """
+    # Display HTML and execute JavaScript to hide the popup after 3 seconds
+    display(HTML(popup_html))
+    display(Javascript("""
+    setTimeout(function() {
+        var popup = document.querySelector('.success-popup');
+        if (popup) {
+            popup.parentNode.removeChild(popup);
+        }
+    }, 3000);
+    """))
 
 # Display the initial face image
 image_html = fetch_and_show_face("/content/Rupantarak/Rupantarak_Pro/Rupantarak_S/Rupantarak_S.png")
@@ -558,6 +523,7 @@ button = widgets.Button(description="Refresh Face", layout=widgets.Layout(width=
 # Define the refresh function
 def refresh_face(btn):
     image_output.value = fetch_and_show_face("/content/Rupantarak/Rupantarak_Pro/Rupantarak_S/Rupantarak_S.png")
+    display_success_refresh_popup()
     
 
 # Assign the refresh function to the button click event
