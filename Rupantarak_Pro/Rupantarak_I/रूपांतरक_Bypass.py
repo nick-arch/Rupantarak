@@ -153,8 +153,8 @@ def unlock_zip(button):
     except subprocess.CalledProcessError as e:
         # Display wrong password message
         display_wrong_password()
-
-# Function to display a success message
+# Function to display a success message with a continuously looping animated pop arrow at the bottom
+# Function to display a success message with a continuously looping animated pop arrow at the bottom
 def display_success():
     success_html = """
     <style>
@@ -163,7 +163,7 @@ def display_success():
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: linear-gradient(45deg, #00FF00, #008000);
+        background: linear-gradient(135deg, #222222, #222222); /* Popup background gradient */
         border: 2px solid #222222;
         border-radius: 10px;
         padding: 20px;
@@ -172,18 +172,48 @@ def display_success():
         color: #ffffff; /* Text color */
     }
     .success-popup h2 {
-        color: #ffffff;
+        background: linear-gradient(to right, #00FF00, #008000); /* Green gradient */
         font-weight: bold;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
-</style>
-<div id="success-popup" class="success-popup">
-    <h2>Success!</h2>
-    <p>You Can Use Now "रूपांतरक ~ Rupantarak Uncensored" Best Of Luck...</p>
-</div>
+    .success-popup p {
+        background: linear-gradient(to right, #FF007F, #800080); /* Pink-purple gradient */
+        font-weight: bold;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .arrow {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 20px solid #00FF00; /* Arrow color */
+        animation: arrowPop 0.5s infinite alternate;
+    }
+    @keyframes arrowPop {
+        0% {bottom: -20px;}
+        100% {bottom: -15px;}
+    }
+    </style>
+    <div id="success-popup" class="success-popup">
+        <h2>रूपांतरक ~ Rupantarak Uncensored Unlocked Successfully!</h2> <!-- Success text green gradient -->
+        <p>Run Below Cell To Use The Tool...</p> <!-- Other text pink-purple gradient -->
+        <div class="arrow"></div>
+    </div>
     """
     global success_popup
     success_popup = widgets.HTML(success_html)
     display(success_popup)
+
+# Call display_success to show the success message with the continuously looping animated pop arrow at the bottom
+# Call display_success to show the success message with the continuously looping animated pop arrow at the bottom
+
+
 
 # Function to display a message for wrong password
 def display_wrong_password():
@@ -200,7 +230,7 @@ def display_wrong_password():
         padding: 20px;
         text-align: center;
         width: 250px; /* Set width */
-        color: #ffffff; /* Text color */
+        color: #111111; /* Text color */
     }
     .wrong-password-popup h2 {
         color: #ffffff;
