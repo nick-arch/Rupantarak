@@ -107,7 +107,7 @@ display(HTML(custom_css))
 
 # Function to run the extracted Python file
 def run_extracted_file():
-    extracted_file_path = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/unzipped/Rupantarak_Pro.py'
+    extracted_file_path = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/unzipped/रूपांतरक_Bypass.py'
     if os.path.exists(extracted_file_path):
         try:
             with open(extracted_file_path, 'r') as file:
