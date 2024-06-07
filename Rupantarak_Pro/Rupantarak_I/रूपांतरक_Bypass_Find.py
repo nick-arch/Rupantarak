@@ -1,7 +1,7 @@
 import os
 import subprocess
 import ipywidgets as widgets
-
+from IPython.display import display, HTML
 def display_file_not_found_popup():
     popup_html = """
     <style>
