@@ -1,6 +1,5 @@
-
 import os
-from IPython.display import display, HTML
+import subprocess
 import ipywidgets as widgets
 
 def display_file_not_found_popup():
@@ -57,10 +56,10 @@ def display_file_not_found_popup():
     </style>
     <div class="popup-container">
         <div class="file-not-found-popup">
-    <h2>रूपांतरक ~ Rupantarak Uncensored Not Found!</h2>
-    <p>Please unlock the Python file first to use रूपांतरक ~ Rupantarak Uncensored.</p>
-    <p>If you don't have the password, please contact me via the feedback form above.</p>
-</div>
+            <h2>रूपांतरक ~ Rupantarak Uncensored Not Found!</h2>
+            <p>Please unlock the Python file first to use रूपांतरक ~ Rupantarak Uncensored.</p>
+            <p>If you don't have the password, please contact me via the feedback form above.</p>
+        </div>
     </div>
     <script>
         function closePopup() {
@@ -73,9 +72,8 @@ def display_file_not_found_popup():
 
 def run_python_script(script_path):
     if os.path.isfile(script_path):
-        %run $script_path
+        subprocess.run(['python', script_path], check=True)
     else:
-        # Create a fixed-size container
         container = widgets.Output(layout={'width': '300px', 'height': '240px'})
         display(container)
         
