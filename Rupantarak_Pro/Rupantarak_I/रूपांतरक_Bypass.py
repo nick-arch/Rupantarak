@@ -11,12 +11,10 @@ from threading import Timer
 gradient_button_css = """
 <style>
 
-body {
-    background: linear-gradient(135deg, #111111, #111111);
-}
+
 
 button {
-    background: linear-gradient(to right, #222222, #222222); /* Dark grey gradient */
+    background: linear-gradient(to right, #444444, #555555); /* Dark grey gradient */
     border-radius: 20px; /* Rounded corners */
     border: none; /* No border */
     color: white; /* Text color */
@@ -45,7 +43,7 @@ button:active {
 }
 
 .password_text {
-  background-image: linear-gradient(to right, #222222, #222222);
+  background-image: linear-gradient(to right, #444444, #555555);
   border: none;
   border-radius: 10px;
   padding: 10px 10px;
@@ -202,7 +200,7 @@ def display_success():
     </style>
     <div id="success-popup" class="success-popup">
         <h2>रूपांतरक ~ Rupantarak Uncensored Unlocked Successfully!</h2> <!-- Success text green gradient -->
-        <p>Run Below Cell To Use The Tool...</p> <!-- Other text pink-purple gradient -->
+        <h3>Run Below Cell To Use The Tool...</h3> <!-- Other text pink-purple gradient -->
         <div class="arrow"></div>
     </div>
     """
