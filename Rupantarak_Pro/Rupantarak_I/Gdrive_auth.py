@@ -6,24 +6,52 @@ from googleapiclient.http import MediaFileUpload
 import ipywidgets as widgets
 from IPython.display import display, HTML
 
-# Custom CSS for button styling
+# Custom CSS for button styling and popups
 custom_css = """
 <style>
 .auth-button {
-    background: linear-gradient(to right, #555555, #444444); /* Dark blue to purple gradient */
-    border-radius: 20px; /* Rounded corners */
-    border: none; /* No border */
-    color: white; /* Text color */
-    padding: 10px 20px; /* Padding */
-    text-align: center; /* Text alignment */
-    text-decoration: none; /* No text decoration */
-    display: inline-block; /* Display as block */
-    font-size: 18px; /* Font size */
-    font-weight: bold; /* Bold text */
-    margin: 4px 2px; /* Margin */
-    cursor: pointer; /* Cursor style */
-    transition-duration: 0.4s; /* Transition duration for hover effect */
-    width: 330px; /* Fixed width for authentication button */
+    background: linear-gradient(to right, #555555, #444444);
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 0; /* Removed padding */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    width: 300px;
+    height: 60px;
+    line-height: 60px; /* Center text vertically */
+}
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #F5F5DC;
+    border: 2px solid #FA8072;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    z-index: 1000;
+    width: 250px;
+    height: 70px;
+}
+.popup h2 {
+    color: #ff0066;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+}
+.popup p {
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
 }
 </style>
 """
@@ -32,14 +60,48 @@ custom_css = """
 custom_css_html = HTML(custom_css)
 display(custom_css_html)
 
+# Function to display the success popup
+def display_success_popup():
+    success_html = """
+    <div class="popup" id="success-popup">
+        <h2 style="color: green;">Successfully Authenticated</h2>
+        <p style="color: green;">Google Drive access has been granted, You can now use Rupantarak GUI.</p>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('success-popup').style.display = 'none';
+        }, 5000);
+    </script>
+    """
+    display(HTML(success_html))
+
+# Function to display the denial popup
+def display_denial_popup():
+    denial_html = """
+    <div class="popup" id="denial-popup">
+        <h2 style="color: red;">Permission Denied</h2>
+        <p style="color: red;">Google Drive access was denied. Please grant permission to proceed.</p>
+    </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('denial-popup').style.display = 'none';
+        }, 5000);
+    </script>
+    """
+    display(HTML(denial_html))
+
 # Function to authenticate and authorize Google Drive access
 def authenticate_drive(b):
     with output_auth:
         output_auth.clear_output()
-        auth.authenticate_user()  # Perform authentication
-        global drive_service
-        drive_service = build('drive', 'v3')  # Build Drive service
-        update_status()  # Update status after authentication
+        try:
+            auth.authenticate_user()  # Perform authentication
+            global drive_service
+            drive_service = build('drive', 'v3')  # Build Drive service
+            update_status()  # Update status after authentication
+            display_success_popup()  # Show success popup
+        except Exception as e:
+            display_denial_popup()  # Show denial popup if an error occurs
 
 # Function to update LED indicator
 def update_indicator(status):
@@ -56,7 +118,7 @@ def update_status():
         status_indicator.value = update_indicator(False)  # Change status to red
 
 # Create button for authentication with dynamic size
-auth_button = widgets.Button(description="Click To Authenticate Google Drive", layout=widgets.Layout(width='auto', height='100px', background_color='#FFB6C1', color='white'))
+auth_button = widgets.Button(description="Click To Authenticate Google Drive", layout=widgets.Layout(width='320px', height='60px'))
 auth_button.style.font_weight = 'bold'
 auth_button.on_click(authenticate_drive)
 auth_button.add_class("auth-button")  # Apply custom CSS class
@@ -70,11 +132,11 @@ status_label = widgets.HTML(value="<strong>Status:</strong>", layout=widgets.Lay
 # HTML widget for displaying LED indicator
 status_indicator = widgets.HTML(layout=widgets.Layout(width='10px', height='10px'))
 
-# Arrange status label and indicator side by side
-status_box = widgets.HBox([status_label, status_indicator])
+# Arrange status label and indicator side by side, centered
+status_box = widgets.HBox([status_label, status_indicator], layout=widgets.Layout(justify_content='center'))
 
-# Arrange button and status box vertically
-button_status_box = widgets.VBox([auth_button, status_box])
+# Arrange button and status box vertically, centered
+button_status_box = widgets.VBox([auth_button, status_box], layout=widgets.Layout(align_items='center'))
 
 # Function to display the collapsible note
 def display_collapsible_note():
@@ -98,8 +160,8 @@ def display_collapsible_note():
     # Create the note widget
     note_widget = widgets.HTML(value=note_content)
 
-    # Display the note
-    display(note_widget)
+    # Display the note, centered
+    display(widgets.HBox([note_widget], layout=widgets.Layout(justify_content='center')))
 
 # Display the widgets
 display(button_status_box, output_auth)
