@@ -6,22 +6,7 @@ import os
 import gdown
 from threading import Timer
 
-def download_from_gdrive(url, save_path):
-    # Ensure the save path directory exists
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    
-    # Extract the file ID from the URL
-    file_id = url.split('/d/')[1].split('/')[0]
-    download_url = f'https://drive.google.com/uc?id={file_id}'
-    
-    # Download the file using gdown
-    gdown.download(download_url, save_path, quiet=True)
 
-# Example usage
-gdrive_url = 'https://drive.google.com/file/d/120J6IqgHxfhcwIH8hEeQl5svEnkdVvby/view?usp=drivesdk'
-save_path = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Bypass.zip'
-
-download_from_gdrive(gdrive_url, save_path)
 
 gradient_button_css = """
 <style>
@@ -105,6 +90,31 @@ custom_css = """
 # Inject the custom CSS into the notebook
 display(HTML(custom_css))
 
+
+from IPython.display import display, HTML, clear_output
+import ipywidgets as widgets
+import subprocess
+import shutil
+import os
+
+# Function to download from Google Drive
+def download_from_gdrive(url, save_path):
+    # Ensure the save path directory exists
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    
+    # Extract the file ID from the URL
+    file_id = url.split('/d/')[1].split('/')[0]
+    download_url = f'https://drive.google.com/uc?id={file_id}'
+    
+    # Download the file using gdown
+    gdown.download(download_url, save_path, quiet=True)
+
+# Example usage
+gdrive_url = 'https://drive.google.com/file/d/120J6IqgHxfhcwIH8hEeQl5svEnkdVvby/view?usp=drivesdk'
+save_path = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Bypass.zip'
+
+download_from_gdrive(gdrive_url, save_path)
+
 # Function to run the extracted Python file
 def run_extracted_file():
     extracted_file_path = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/unzipped/रूपांतरक_Bypass.py'
@@ -117,16 +127,63 @@ def run_extracted_file():
     else:
         print("Extracted file not found!")
 
-# Function to hide the password field and the button
-def hide_elements():
-    password_text.layout.visibility = 'hidden'
-    password_text.layout.height = '0px'
-    extract_button.layout.visibility = 'hidden'
-    extract_button.layout.height = '0px'
-    confirmation_popup.layout.visibility = 'hidden'
-    confirmation_popup.layout.height = '0px'
-    wrong_password_popup.layout.visibility = 'hidden'
-    wrong_password_popup.layout.height = '0px'
+from IPython.display import display, HTML, clear_output
+import ipywidgets as widgets
+import subprocess
+import shutil
+import os
+
+# Function to unlock the ZIP file
+def unlock_zip(button):
+    password = password_text.value
+    try:
+        # Check if extraction directory exists
+        extraction_dir = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/unzipped'
+        if os.path.exists(extraction_dir):
+            shutil.rmtree(extraction_dir)  # Delete the old extraction directory and its contents
+        
+        # Extract the new ZIP file
+        command = f'unzip -P "{password}" /content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Bypass.zip -d {extraction_dir}'
+        output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+        # No need to print output as it's hidden now
+        
+        # Display success message
+        display_success()
+        
+    except subprocess.CalledProcessError as e:
+        # Display wrong password message
+        display_wrong_password()
+
+# Function to display a success message
+def display_success():
+    success_html = """
+    <style>
+    .success-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(45deg, #00FF00, #008000);
+        border: 2px solid #222222;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        width: 250px; /* Set width */
+        color: #ffffff; /* Text color */
+    }
+    .success-popup h2 {
+        color: #ffffff;
+        font-weight: bold;
+    }
+</style>
+<div id="success-popup" class="success-popup">
+    <h2>Success!</h2>
+    <p>You Can Use Now "रूपांतरक ~ Rupantarak Uncensored" Best Of Luck...</p>
+</div>
+    """
+    global success_popup
+    success_popup = widgets.HTML(success_html)
+    display(success_popup)
 
 # Function to display a message for wrong password
 def display_wrong_password():
@@ -166,41 +223,6 @@ def display_wrong_password():
     wrong_password_popup = widgets.HTML(wrong_password_html)
     display(wrong_password_popup)
 
-# Main function to unlock the ZIP file
-def unlock_zip(button):
-    password = password_text.value
-    try:
-        # Check if extraction directory exists
-        extraction_dir = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/unzipped'
-        if os.path.exists(extraction_dir):
-            shutil.rmtree(extraction_dir)  # Delete the old extraction directory and its contents
-        
-        # Extract the new ZIP file
-        command = f'unzip -P "{password}" /content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Bypass.zip -d {extraction_dir}'
-        output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
-        # No need to print output as it's hidden now
-        
-        # Hide the password field and the button
-        password_text.layout.visibility = 'hidden'
-        password_text.layout.height = '0px'
-        extract_button.layout.visibility = 'hidden'
-        extract_button.layout.height = '0px'
-        
-        # Clear all output
-        clear_output(wait=True)
-        
-        # Display success message
-        
-        # Run the extracted Python file
-        run_extracted_file()
-        
-        # Hide the password field and button after 5 seconds
-        Timer(5, hide_elements).start()
-        
-    except subprocess.CalledProcessError as e:
-        # Display wrong password message
-        display_wrong_password()
-
 # Create password input field without a label
 password_text = widgets.Password(placeholder='Enter password')
 password_text.add_class("password_text")
@@ -210,7 +232,7 @@ password_text.layout.width = '250px'
 password_text.layout.height = 'auto'
 
 # Create extract button
-extract_button = widgets.Button(description='Access रूपांतरक ~ Bypass')
+extract_button = widgets.Button(description='Access रूपांतरक ~ Rupantarak')
 
 # Set width and height for the button
 extract_button.layout.width = '250px'
@@ -227,85 +249,6 @@ main_container = widgets.VBox([container], layout=widgets.Layout(justify_content
 
 # Modify the layout of the main container to remove any unnecessary space
 main_container.layout.margin = '0px'
-
-from IPython.display import display, HTML
-
-popup_html = """
-<style>
-.modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: transparent;
-    padding: 20px;
-    border: 2px solid #222222; /* Border color and thickness */
-    border-radius: 10px;
-    text-align: center;
-}
-
-.popup-background {
-    background-color: #000; /* Black background */
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.popup-header {
-    font-size: 24px;
-    font-weight: bold;
-    background: -webkit-linear-gradient(left, #00FF00, #008000); /* Green gradient for this text */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.popup-description-gradient {
-    font-size: 18px;
-    margin: 10px 0;
-    background: -webkit-linear-gradient(left, #FF007F, #800080); /* Gradient for this text */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.popup-uncensored {
-    font-size: 18px;
-    background: -webkit-linear-gradient(left, #ff0000, #ff6666); /* Red gradient for this text */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-</style>
-
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <div class="popup-background">
-        <div class="popup-header"><b>Enter Password To Access</b></div>
-        <div class="popup-description-gradient"><b>रूपांतरक ~ Rupantarak</b></div>
-        <div class="popup-uncensored"><b>Uncensored</b></div>
-    </div>
-  </div>
-</div>
-
-<script>
-// Automatically hide the modal after 3 seconds
-setTimeout(function(){
-    var modal = document.getElementById('myModal');
-    modal.style.display = 'none';
-}, 3000);
-</script>
-"""
-
-# Display the popup
-display(HTML(popup_html))
-
 
 # Display main container
 display(main_container)
