@@ -135,7 +135,7 @@ def display_success():
         border-radius: 10px;
         padding: 20px;
         text-align: center;
-        width: 250px;
+        width: 280px;
         color: #ffffff;
         font-family: 'Bree Serif', serif;
     }
