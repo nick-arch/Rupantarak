@@ -7,7 +7,17 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 import ipywidgets as widgets
 from IPython.display import display, HTML
+from IPython.display import display, HTML
 
+# HTML code for divider and headings
+html_code = """
+<div style="width: 300px; height: 10px; background-color: #222222; border-radius: 5px; margin: 0 auto;"></div>
+</div>
+</div>
+"""
+
+# Display HTML
+display(HTML(html_code))
 # Custom CSS for button styling and popups
 custom_css = """
 <style>
@@ -51,7 +61,7 @@ custom_css = """
     text-align: center;
     z-index: 1000;
     width: 200px;
-    height: 60px;
+    height: 100px;
 }
 .popup h2 {
     color: #ff0066;
@@ -362,7 +372,7 @@ from IPython.display import display, HTML
 
 # HTML code for divider and headings
 html_code = """
-<div style="width: 300px; height: 10px; background-color: #222222; border-radius: 5px; margin: 0 auto;"></div>
+<div style="width: 300px; height: 5px; background-color: #222222; border-radius: 5px; margin: 0 auto;"></div>
 </div>
 </div>
 """
