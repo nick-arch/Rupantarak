@@ -171,8 +171,8 @@ def display_success():
     }
     </style>
     <div id="success-popup" class="success-popup">
-        <h2>रूपांतरक ~ Rupantarak Uncensored Unlocked Successfully!</h2>
-        <h3>Run Below Cell To Use The Tool...</h3>
+        <h2>रूपांतरक ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ Unlocked Successfully!</h2>
+        <h3>ʏᴏᴜ ᴄᴀɴ ɴᴏᴡ ᴜsᴇ रूपांतरक ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ ᴡɪᴛʜᴏᴜᴛ ᴀɴʏ ʟɪᴍɪᴛᴀᴛɪᴏɴs.</h3>
         <div class="arrow"></div>
     </div>
     """
