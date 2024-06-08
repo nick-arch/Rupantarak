@@ -29,7 +29,86 @@ from google.colab import drive
 import gdown
 from IPython.display import display, Javascript
 from IPython.display import display, clear_output
+# Define CSS import for Bree Serif font
+css_import = """
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+</style>
+"""
 
+# Define CSS styles for widgets, button text, headings, labels, counter_labels, and popups
+# Define CSS styles for widgets, button text, headings, labels, counter_labels, and popups
+widget_css = """
+<style>
+.bree-serif-regular {
+  font-family: "Bree Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Apply font to all widgets */
+.widget {
+    font-family: "Bree Serif", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* Apply font to button text */
+button {
+    font-family: "Bree Serif", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* Apply font to headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Bree Serif", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* Apply font to labels */
+label {
+    font-family: "Bree Serif", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* Apply font to counter labels */
+.counter_label {
+    font-family: "Bree Serif", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* Apply font to popups */
+.popup {
+    font-family: "Bree Serif", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* Apply font to total uploads counter label */
+.total_uploads_label {
+    font-family: "Bree Serif", serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+/* Apply font to success refresh popup */
+.success-popup p {
+    font-family: "Bree Serif", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+</style>
+"""
+
+# Display CSS import
+display(HTML(css_import))
+
+# Display CSS styles for widgets, button text, headings, labels, counter_labels, and popups
+display(HTML(widget_css))
 
 
 # Custom CSS for gradient styles
@@ -338,7 +417,8 @@ uploader1.style.font_weight = 'bold'
 uploader2.style.font_weight = 'bold'
 
 # Create upload counter label
-counter_label = widgets.HTML(value=f"<b>Total uploads: {total_uploads}</b>",
+# Create upload counter label with CSS class name
+counter_label = widgets.HTML(value=f"<b class='total_uploads_label'>Total uploads: {total_uploads}</b>",
                              layout=widgets.Layout(width='300px', margin='5px auto', text_align='center'))
 
 # Create button
@@ -476,6 +556,7 @@ from IPython.display import HTML, Javascript
 from IPython.display import HTML, Javascript
 
 # Function to display a success refresh popup
+# Function to display a success refresh popup with CSS class name
 def display_success_refresh_popup():
     popup_html = """
     <div class="success-popup">
@@ -512,7 +593,6 @@ def display_success_refresh_popup():
         }
     }, 3000);
     """))
-
 # Display the initial face image
 image_html = fetch_and_show_face("/content/Rupantarak/Rupantarak_Pro/Rupantarak_S/Rupantarak_S.png")
 image_output = widgets.HTML(value=image_html)
