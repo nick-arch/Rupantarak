@@ -102,7 +102,7 @@ def display_success_popup():
     success_html = """
     <div class="popup" id="success-popup">
         <h2 style="color: green;">Successfully Authenticated Gdrive</h2>
-        <p style="color: green;">You can now use Rupantarak Tool.</p>
+        <p style="color: green;">ʏᴏᴜ ᴄᴀɴ ɴᴏᴡ ᴜsᴇ रूपांतरक ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ ᴛᴏᴏʟ.</p>
     </div>
     <script>
         setTimeout(function() {
