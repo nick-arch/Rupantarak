@@ -197,7 +197,8 @@ def display_wrong_password():
         padding: 20px;
         text-align: center;
         width: 250px;
-        color: #111111;
+        height: 100px;
+        color: #DC143C;
         font-family: 'Bree Serif', serif;
     }
     .wrong-password-popup h2 {
