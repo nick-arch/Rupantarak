@@ -393,8 +393,8 @@ uploader2.style.font_weight = 'bold'
 # Create upload counter label with CSS class name
 import ipywidgets as widgets
 
-container = widgets.VBox([counter_label], layout=widgets.Layout(justify_content='center'))
-
+counter_label = widgets.HTML(value=f"<b class='total_uploads_label'>Total uploads: {total_uploads}</b>",
+                             layout=widgets.Layout(width='300px', margin='5px auto', text_align='center'))
 # Create button
 upload_button = widgets.Button(description="Start Upload",
                                layout=widgets.Layout(width='300px', height='40px', margin='5px auto'))
