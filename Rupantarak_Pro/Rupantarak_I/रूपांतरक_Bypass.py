@@ -15,7 +15,7 @@ body {
 }
 
 button {
-    background: linear-gradient(to right, FF5733, #FF0000);
+    background: linear-gradient(to right, #FF5733, #FF0000);
     border-radius: 20px;
     border: none;
     color: white;
@@ -36,7 +36,7 @@ button:hover {
     transform: scale(1.00);
 }
 button:active {
-    background: linear-gradient(to right, FF5733, #FF0000);
+    background: linear-gradient(to right, #FF5733, #FF0000);
     transform: scale(0.75);
 }
 .password_text {
@@ -191,8 +191,8 @@ def display_wrong_password():
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: linear-gradient(45deg, #ff0000, #ff0066);
-        border: 2px solid #222222;
+        background: linear-gradient(45deg, #111111, #111111);
+        border: 5px solid #222222;
         border-radius: 10px;
         padding: 20px;
         text-align: center;
