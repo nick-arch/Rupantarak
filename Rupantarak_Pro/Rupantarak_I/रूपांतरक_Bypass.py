@@ -244,3 +244,37 @@ main_container.layout.margin = '0px'
 
 # Display main container
 display(main_container)
+
+
+import os
+import requests
+
+def create_folders():
+    folders = [
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_T/",
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_F/",
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_B/",
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_O/",
+        "/content/Rupantarak/Rupantarak_Pro/Rupantarak_M/"
+    ]
+    for folder in folders:
+        os.makedirs(folder, exist_ok=True)
+
+def download_image_from_google_drive(url, save_path):
+    file_id = url.split('/')[-2]
+    download_link = f"https://drive.google.com/uc?id={file_id}"
+    response = requests.get(download_link)
+    if response.status_code == 200:
+        with open(save_path, 'wb') as f:
+            f.write(response.content)
+
+# Example usage:
+url1 = "https://drive.google.com/file/d/12ki_2rG70Y96omzFAxz9S0jrwZ_gh1hg/view?usp=sharing"
+url2 = "https://drive.google.com/file/d/12gvpIb8Aif070zmfEfZkZz0S28SfK7wa/view?usp=sharing"
+
+save_path1 = "/content/Rupantarak/Rupantarak_Pro/Rupantarak_S/Rupantarak_S.png"
+save_path2 = "/content/Rupantarak/Rupantarak_Pro/Rupantarak_T/Rupantarak_T_1.png"
+
+create_folders()
+download_image_from_google_drive(url1, save_path1)
+download_image_from_google_drive(url2, save_path2)
