@@ -28,7 +28,7 @@ save_paths = [
     '/content/Rupantarak/Rupantarak_Pro/Rupantarak_B/Rupantarak_B_0.png',
     '/content/Rupantarak/Rupantarak_Pro/Rupantarak_O/Rupantarak_Output.png',
     '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Me.jpg',
-    '/content/Rupantarak/Rupantarak_Pro/Rupantarak_T/Rupantarak_T1.png',
+    '/content/Rupantarak/Rupantarak_Pro/Rupantarak_T/Rupantarak_T_1.png',
     '/content/Rupantarak/Rupantarak_Pro/Rupantarak_M/trimmed_video.mp4',
 ]
 
