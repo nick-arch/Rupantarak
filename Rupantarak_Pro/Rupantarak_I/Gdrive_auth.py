@@ -1,4 +1,5 @@
 
+
 from google.colab import drive
 from google.colab import auth
 from googleapiclient.discovery import build
@@ -32,8 +33,8 @@ custom_css = """
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #F5F5DC;
-    border: 2px solid #FA8072;
+    background-color: #111111;
+    border: 4px solid #222222;
     border-radius: 10px;
     padding: 20px;
     text-align: center;
@@ -52,6 +53,21 @@ custom_css = """
     margin: 0;
     padding: 0;
     line-height: normal;
+}
+
+.indicator {
+    display: inline-block;
+    background-color: #222222;
+    border-radius: 10px;
+    padding: 5px 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.authenticated {
+    color: #00FF7F;
+}
+.unauthenticated {
+    color: #DC143C;
 }
 </style>
 """
@@ -106,9 +122,9 @@ def authenticate_drive(b):
 # Function to update LED indicator
 def update_indicator(status):
     if status:
-        return '<font size="3" color="green"><strong>&#9679;</strong></font>'  # Green
+        return '<font size="3" color="#00FF7F" class="indicator"><strong>⸦ ⸧  ᗩᑌ丅ᕼᗴᑎ丅Iᑕᗩ丅ᗴᗪ  ⸦ ⸧</strong></font>'  # Green
     else:
-        return '<font size="3" color="red"><strong>&#9679;</strong></font>'  # Red
+        return '<font size="3" color="#DC143C" class="indicator"><strong>⸦ ⸧  ᑌᑎ~ᗩᑌ丅ᕼᗴᑎ丅Iᑕᗩ丅ᗴᗪ  ⸦ ⸧</strong></font>'  # Red
 
 # Function to update status indicator
 def update_status():
@@ -127,45 +143,21 @@ auth_button.add_class("auth-button")  # Apply custom CSS class
 output_auth = widgets.Output()
 
 # Label for status
-status_label = widgets.HTML(value="<strong>Status:</strong>", layout=widgets.Layout(font_weight='bold'))
 
 # HTML widget for displaying LED indicator
-status_indicator = widgets.HTML(layout=widgets.Layout(width='10px', height='10px'))
+status_indicator = widgets.HTML(value=update_indicator(False))
+
 
 # Arrange status label and indicator side by side, centered
-status_box = widgets.HBox([status_label, status_indicator], layout=widgets.Layout(justify_content='center'))
+status_box = widgets.HBox([status_indicator], layout=widgets.Layout(justify_content='center'))
 
 # Arrange button and status box vertically, centered
 button_status_box = widgets.VBox([auth_button, status_box], layout=widgets.Layout(align_items='center'))
+status_indicator.add_class(".indicator")  # Apply custom CSS class
 
-# Function to display the collapsible note
-def display_collapsible_note():
-    # Define the content of the collapsible note
-    note_content = """
-    <details>
-        <summary><strong>Permissions and File Access</strong></summary>
-        <div style="border: 1px solid transparent; border-radius: 5px; padding: 10px;">
-            <div style="border: 1px solid #CCCCCC; border-radius: 5px; padding: 10px;">
-                <p><strong>Permissions Requested:</strong></p>
-                <ul>
-                    <li><strong>Read and write access to your Google Drive files and folders</strong></li>
-                </ul>
-                <p><strong>Why do we need these permissions?</strong></p>
-                <p><strong>This notebook, <em>रूपांतरक ~ Rupantarak by Vishal Sharma</em>, requires access to your Google Drive to upload, download, and manage files as part of its functionality. Please note that only your account can access the processed files. Processed videos and images will be directly saved to your Google Drive account with private access permissions, ensuring that only you can access them.</strong></p>
-            </div>
-        </div>
-    </details>
-    """
-
-    # Create the note widget
-    note_widget = widgets.HTML(value=note_content)
-
-    # Display the note, centered
-    display(widgets.HBox([note_widget], layout=widgets.Layout(justify_content='center')))
 
 # Display the widgets
 display(button_status_box, output_auth)
-display_collapsible_note()
 
 # Check if authentication has already been completed
 update_status()
