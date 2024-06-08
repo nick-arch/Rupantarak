@@ -87,7 +87,7 @@ def download_from_gdrive(url, save_path):
     download_url = f'https://drive.google.com/uc?id={file_id}'
     gdown.download(download_url, save_path, quiet=True)
 
-gdrive_url = 'https://drive.google.com/file/d/12mv1VM69G6kZH14kmMflvmm9XZpJ2CJP/view?usp=drivesdk'
+gdrive_url = 'https://drive.google.com/file/d/1E652isN1okUjgdkyf3DbQDn9UPg6Ly1B/view?usp=drivesdk'
 save_path = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Bypass.zip'
 download_from_gdrive(gdrive_url, save_path)
 
