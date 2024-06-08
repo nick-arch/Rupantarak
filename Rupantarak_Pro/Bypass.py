@@ -228,7 +228,7 @@ html_code = """
 
 <div style="width: 330px; height: 5px; background-image: linear-gradient(90deg, #222222, #222222); border-radius: 5px; margin: 0 auto;"></div>
 <div style="width: 350px; height: 40px; text-align: center; margin: 10px auto; display: flex; justify-content: center; align-items: center; background-color: #222222; border-radius: 20px;">
-  <span style="color: white; font-size: 18px; background-image: linear-gradient(90deg, #FF5733, #FF0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">Run रूपांतरक ~ Rupantarak Uncensored</span>
+  <span style="color: white; font-size: 18px; background-image: linear-gradient(90deg, #FF5733, #FF0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">रूपांतरक ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ</span>
 </div>
 
 <!-- Your other HTML content and functions go here -->
@@ -538,7 +538,7 @@ def run_process(_):
         display_popup_message("Process completed successfully!")
 
 # Create a button with height 55px and width 400px
-button = widgets.Button(description="Start Rupantarak Image", layout=widgets.Layout(width='300px', height='55px', margin='auto'))
+button = widgets.Button(description="Start ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ", layout=widgets.Layout(width='300px', height='55px', margin='auto'))
 
 # Attach the function to the button click event
 button.on_click(run_process)
