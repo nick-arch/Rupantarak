@@ -15,7 +15,7 @@ body {
 }
 
 button {
-    background: linear-gradient(to right, #444444, #555555);
+    background: linear-gradient(to right, FF5733, #FF0000);
     border-radius: 20px;
     border: none;
     color: white;
@@ -32,15 +32,15 @@ button {
     font-family: 'Bree Serif', serif;
 }
 button:hover {
-    background: linear-gradient(to right, #FF007F, #800080);
-    transform: scale(1.05);
+    background: linear-gradient(to right, #FF0000, #FF5733);
+    transform: scale(1.00);
 }
 button:active {
-    background: linear-gradient(to right, #FA8072, #F5F5DC);
-    transform: scale(0.95);
+    background: linear-gradient(to right, FF5733, #FF0000);
+    transform: scale(0.75);
 }
 .password_text {
-  background-image: linear-gradient(to right, #444444, #555555);
+  background-image: linear-gradient(to right, #FF5733, #FF0000);
   border: none;
   border-radius: 10px;
   padding: 10px 10px;
@@ -52,7 +52,7 @@ button:active {
   font-family: 'Bree Serif', serif;
 }
 .password_text:hover {
-  background-image: linear-gradient(to right, #FF007F, #800080);
+  background-image: linear-gradient(to right, #FF0000, #FF5733);
   box-shadow: 0px 0px 10px 0px rgba(181, 102, 184, 0.5);
 }
 </style>
@@ -130,8 +130,8 @@ def display_success():
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, #222222, #222222);
-        border: 2px solid #222222;
+        background: linear-gradient(135deg, #111111, #111111);
+        border: 5px solid #222222;
         border-radius: 10px;
         padding: 20px;
         text-align: center;
@@ -140,14 +140,14 @@ def display_success():
         font-family: 'Bree Serif', serif;
     }
     .success-popup h2 {
-        background: linear-gradient(to right, #00FF00, #008000);
+        background: linear-gradient(to right, #FF5733, #FF0000);
         font-weight: bold;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-family: 'Bree Serif', serif;
     }
     .success-popup p {
-        background: linear-gradient(to right, #FF007F, #800080);
+        background: linear-gradient(to right, FF5733, #FF0000);
         font-weight: bold;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -162,7 +162,7 @@ def display_success():
         height: 0;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-top: 20px solid #00FF00;
+        border-top: 20px solid #FF0000;
         animation: arrowPop 0.5s infinite alternate;
     }
     @keyframes arrowPop {
