@@ -1,4 +1,5 @@
 
+
 from IPython.display import display, HTML
 import ipywidgets as widgets
 import cv2
@@ -604,3 +605,63 @@ html_code = """
 display(HTML(html_code))
 
 # @markdown
+
+
+from IPython.display import display, HTML
+import base64
+import os
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+import ipywidgets as widgets
+
+def image_to_base64(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode("utf-8")
+
+def display_images(directory, max_width=350):
+    html = '<div id="image_container" style="overflow-x: auto; white-space: nowrap; display: flex;">'
+    
+    for filename in sorted(os.listdir(directory)):
+        if filename.endswith(".jpg") or filename.endswith(".png"):
+            image_path = os.path.join(directory, filename)
+            img = mpimg.imread(image_path)
+            img_base64 = image_to_base64(image_path)
+            img_width = min(max_width, img.shape[1])
+            
+            # HTML to display image with rounded corners, background, and download link
+            html += f'<div style="position: relative; flex: 0 0 auto; width: {max_width}px; border-radius: 20px; overflow: hidden; margin-right: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">'
+            html += f'<a href="data:image/png;base64,{img_base64}" download="{filename}">'
+            html += f'<img src="data:image/png;base64,{img_base64}" style="width: 100%; border-radius: 20px;">'
+            html += f'<div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, #FF5733, #FF0000); border-radius: 10px; padding: 5px;">'
+            html += f'<a href="data:image/png;base64,{img_base64}" download="{filename}"><button style="border: none; background: none; cursor: pointer; color: white; font-weight: bold; font-size: 16px; padding: 0px 20px;">Click Anywhere To Download Image Locally</button></a>'
+            html += '</div></a></div>'
+    
+    html += '</div>'
+    return html
+
+directory_path = "/content/Rupantarak/Rupantarak_Pro/Rupantarak_B/"
+
+# Button to toggle image display
+toggle_button = widgets.ToggleButton(
+    value=False,
+    description='Show & Hide & Refresh All Processed Images',
+    disabled=False,
+    button_style='info',
+    tooltip='Click to toggle image display',
+    layout=widgets.Layout(width='300px', height='40px', margin='10px auto')
+)
+
+output = widgets.Output()
+
+def on_button_clicked(change):
+    with output:
+        output.clear_output()
+        if change.new:
+            display(HTML(display_images(directory_path)))
+        else:
+            pass
+
+toggle_button.observe(on_button_clicked, names='value')
+
+# Display the button and output
+display(widgets.VBox([toggle_button, output]))
