@@ -172,7 +172,7 @@ def display_success():
     </style>
     <div id="success-popup" class="success-popup">
         <h2>रूपांतरक ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ Unlocked Successfully!</h2>
-        <h3>ʏᴏᴜ ᴄᴀɴ ɴᴏᴡ ᴜsᴇ रूपांतरक ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ ᴡɪᴛʜᴏᴜᴛ ᴀɴʏ ʟɪᴍɪᴛᴀᴛɪᴏɴs.</h3>
+        <h3>ʏᴏᴜ ᴄᴀɴ ɴᴏᴡ ᴜsᴇ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ ᴡɪᴛʜᴏᴜᴛ ᴀɴʏ ʟɪᴍɪᴛᴀᴛɪᴏɴs.</h3>
         <div class="arrow"></div>
     </div>
     """
