@@ -404,7 +404,7 @@ def display_popup_message(message, width='250px', height='60px', background_colo
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: {background_color};
-            border: 2px solid {border_color};
+            border: 10px solid {border_color};
             border-radius: 10px;
             width: {width};
             height: {height};
@@ -607,6 +607,7 @@ display(HTML(html_code))
 # @markdown
 
 
+
 from IPython.display import display, HTML
 import base64
 import os
@@ -632,12 +633,75 @@ def display_images(directory, max_width=350):
             html += f'<div style="position: relative; flex: 0 0 auto; width: {max_width}px; border-radius: 20px; overflow: hidden; margin-right: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">'
             html += f'<a href="data:image/png;base64,{img_base64}" download="{filename}">'
             html += f'<img src="data:image/png;base64,{img_base64}" style="width: 100%; border-radius: 20px;">'
-            html += f'<div style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, #FF5733, #FF0000); border-radius: 10px; padding: 5px;">'
-            html += f'<a href="data:image/png;base64,{img_base64}" download="{filename}"><button style="border: none; background: none; cursor: pointer; color: white; font-weight: bold; font-size: 16px; padding: 0px 20px;">Click Anywhere To Download Image Locally</button></a>'
+            html += f'<div style="position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)); border-radius: 10px; padding: 5px;">'
+            html += f'<a href="data:image/png;base64,{img_base64}" download="{filename}"><button style="border: none; background: none; cursor: pointer; color: white; font-weight: bold; font-size: 16px; padding: 0px 20px;">Click Anywhere To Download Image Locally</br></br>रूपांतरक ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ</button></a>'
             html += '</div></a></div>'
     
     html += '</div>'
     return html
+
+def display_popup_message(message, width='250px', height='60px', background_color='#111111', border_color='#FF0000', text_color='#333333'):
+    if message.startswith("Success"):
+        text_color = '#008000'  # Green color for success messages
+    elif message.startswith("No target"):
+        text_color = '#222222' # Red color for no target messages
+
+    popup_html = f"""
+    <style>
+        .popup-message {{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: {background_color};
+            border: 5px solid {border_color}; /* Adjusted border width and color */
+            border-radius: 10px;
+            width: {width};
+            height: {height};
+            padding: 20px;
+            text-align: center;
+            display: flex; /* Added to enable flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            z-index: 9999;
+        }}
+        .popup-message h2 {{
+            background: linear-gradient(to right, #FF5733, #FF0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0; /* Added to remove default margin */
+        }}
+        .popup-message p {{
+            color: {text_color};
+            margin: 0; /* Added to remove default margin */
+            padding: 10px 0; /* Adjusted padding for better alignment */
+        }}
+    </style>
+    <div class="popup-message">
+        <h2>{message}</h2>
+    </div>
+    <script>
+        setTimeout(function(){{
+            var popup = document.querySelector('.popup-message');
+            if (popup) {{
+                popup.remove();
+            }}
+        }}, 3000);  // Hide popup after 3 seconds
+    </script>
+    """
+    display(HTML(popup_html))
+
+def on_button_clicked(change):
+    with output:
+        output.clear_output()
+        if change.new:
+            # Display loading popup
+            display_popup_message("Loading All Processed Images...", width='200px', height='60px')
+            display(HTML(display_images(directory_path)))
+            # Display success popup
+            display_popup_message("Successfully Refreshed Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ Images", width='200px', height='100px')
+        else:
+            pass
 
 directory_path = "/content/Rupantarak/Rupantarak_Pro/Rupantarak_B/"
 
@@ -652,14 +716,6 @@ toggle_button = widgets.ToggleButton(
 )
 
 output = widgets.Output()
-
-def on_button_clicked(change):
-    with output:
-        output.clear_output()
-        if change.new:
-            display(HTML(display_images(directory_path)))
-        else:
-            pass
 
 toggle_button.observe(on_button_clicked, names='value')
 
