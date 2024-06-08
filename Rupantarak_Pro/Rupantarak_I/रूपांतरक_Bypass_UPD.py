@@ -115,65 +115,38 @@ display(HTML(widget_css))
 gradient_button_css = """
 <style>
 
+/* Default button style */
 button {
-    background: linear-gradient(to right, #444444, #555555); /* Dark grey gradient */
-    border-radius: 20px; /* Rounded corners */
-    border: none; /* No border */
-    color: white; /* Text color */
-    padding: 10px 20px; /* Padding */
-    text-align: center; /* Text alignment */
-    text-decoration: none; /* No text decoration */
-    display: inline-block; /* Display inline-block */
-    font-size: 18px; /* Font size */
-    font-weight: bold; /* Bold text */
-    margin: 4px 20px; /* Margin */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background 0.4s, transform 0.4s; /* Transition effect duration */
-    width: 300px; /* Fixed width */
-}
-
-/* Hover effect */
-button:hover {
-    background: linear-gradient(to right, #FF007F, #800080); /* Slightly lighter gradient on hover */
-    transform: scale(1.00); /* Slightly increase size */
-}
-
-/* Click effect */
-button:active {
-    background: linear-gradient(to right, #444444, #555555); /* Darker gradient on click */
-    transform: scale(0.85); /* Slightly decrease size */
-}
-
-
-
-
-.custom-download-button {
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(to right, #FF5733, #FF0000);
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
     text-decoration: none;
-    width: 100%;
-    margin-top: 10px;
+    width: 300px
+    margin-top: 5px;
+    transition: background 0.4s, transform 0.4s; /* Transition effect duration */
 }
 
-.widget-button {
-    font-size: 16px !important;
-    font-weight: bold !important;
+/* Hover effect */
+button:hover {
+    background: linear-gradient(to right, #FF0000, #FF5733); /* Reverse gradient on hover */
+    transform: scale(1.00); /* Slightly increase size */
 }
 
-.rounded-heading {
-    background-color: #333333;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 10px;
-    margin-bottom: 5px;
+/* Click effect */
+button:active {
+    background: linear-gradient(to right, #800000, #8B4513); /* Darker gradient on click */
+    transform: scale(0.75); /* Slightly decrease size */
 }
+
+
+
+
 </style>
 """
 
@@ -243,8 +216,8 @@ def display_upload_success():
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #222222; /* Popup background color */
-            border: 2px solid #008000;
+            background-color: #111111; /* Popup background color */
+            border: 5px solid #222222;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
@@ -278,8 +251,8 @@ def display_no_image_selected():
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #222222; /* Popup background color */
-            border: 2px solid #FF6347;
+            background-color: #111111; /* Popup background color */
+            border: 5px solid #222222;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
@@ -287,7 +260,7 @@ def display_no_image_selected():
         .no-image-selected-popup h2 {
             color: #FF6347;
             font-weight: bold; /* Make text bold */
-            background: -webkit-linear-gradient(#FF6347, #FF0000); /* Red gradient for text */
+            background: -webkit-linear-gradient(#FF5733, #FF0000); /* Red gradient for text */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -391,7 +364,7 @@ def display_images(folder_path, html_note):
 
     # Update HTML note with uploaded image and text
     html_note.value = f"""
-    <details style="width: 150px; margin-right: -2px;" open>
+    <details style="width: 170px; margin-right: -2px;" open>
         <summary style="font-weight: bold; background-color: #222222; color: white; border-radius: 5px; padding: 8px; text-align: center;">{html_note.description}</summary>
         <div style="background-color: #222222; border-radius: 10px; padding: 10px;">
             {images_html}
@@ -418,8 +391,10 @@ uploader2.style.font_weight = 'bold'
 
 # Create upload counter label
 # Create upload counter label with CSS class name
+import ipywidgets as widgets
+
 counter_label = widgets.HTML(value=f"<b class='total_uploads_label'>Total uploads: {total_uploads}</b>",
-                             layout=widgets.Layout(width='300px', margin='5px auto', text_align='center'))
+                             layout=widgets.Layout(width='300px', text_align='center'))
 
 # Create button
 upload_button = widgets.Button(description="Start Upload",
@@ -439,7 +414,7 @@ upload_button.on_click(on_button_click)
 # Create containers for select boxes, button, counter label, and HTML notes
 select_boxes_container = widgets.HBox([uploader1, uploader2], layout=widgets.Layout(justify_content='center'))
 button_container = widgets.HBox([upload_button], layout=widgets.Layout(justify_content='center'))
-counter_label_container = widgets.HBox([counter_label], layout=widgets.Layout(justify_content='center'))
+container = widgets.VBox([counter_label], layout=widgets.Layout(justify_content='center'))
 html_notes_container = widgets.HBox([html_note1, html_note2], layout=widgets.Layout(justify_content='center'))
 
 # Define custom CSS styles
@@ -487,9 +462,7 @@ def fetch_and_show_face(image_path):
 
     # Define the border color
     border_color = (17, 17, 17)  # RGB for #111111
-    background_color = (17, 17, 17)  # RGB for #111111
-
-    # Process the first detected face only
+    background_color = (17, 17, 17)  # RGB for #111111    # Process the first detected face only
     (x, y, w, h) = faces[0]
 
     # Increase the width and height by 70%
@@ -551,12 +524,8 @@ def fetch_and_show_face(image_path):
 
     return image_html
 
-from IPython.display import HTML, Javascript
-
-from IPython.display import HTML, Javascript
 
 # Function to display a success refresh popup
-# Function to display a success refresh popup with CSS class name
 def display_success_refresh_popup():
     popup_html = """
     <div class="success-popup">
@@ -569,7 +538,7 @@ def display_success_refresh_popup():
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: #111111;
-            border: 2px solid #FFD700;
+            border: 5px solid #222222;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
@@ -577,7 +546,7 @@ def display_success_refresh_popup():
         .success-popup p {
             color: yellow; /* Yellow text */
             font-weight: bold; /* Make text bold */
-            background: -webkit-linear-gradient(#FFFF00, #FFD700); /* Yellow gradient for text */
+            background: -webkit-linear-gradient(#FF5733, #FF0000); /* Yellow gradient for text */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -593,6 +562,7 @@ def display_success_refresh_popup():
         }
     }, 3000);
     """))
+
 # Display the initial face image
 image_html = fetch_and_show_face("/content/Rupantarak/Rupantarak_Pro/Rupantarak_S/Rupantarak_S.png")
 image_output = widgets.HTML(value=image_html)
@@ -612,6 +582,83 @@ button.on_click(refresh_face)
 # Display the refresh button with margin and face image
 display(widgets.VBox([image_output, widgets.HBox([button], layout=widgets.Layout(justify_content='center'))]))
 
+import os
+import ipywidgets as widgets
+from IPython.display import display, HTML, Javascript
+
+# Create the reset button
+reset_button = widgets.Button(
+    description="Click To Delete All Uploaded Target's",
+    layout=widgets.Layout(width='300px', height='40px', margin='10px auto'),
+    style={'button_color': 'blue', 'font_weight': 'bold'}
+)
+
+# Function to delete all files in the folder
+def delete_all_files(b):
+    folder_path = "/content/Rupantarak/Rupantarak_Pro/Rupantarak_T"
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            pass
+    display_popup_message()
+
+# Function to display a popup with gradient interface
+def display_popup_message():
+    popup_html = """
+    <style>
+        .popup-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #111111, #111111);
+            border: 10px solid #222222;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            z-index: 9999;
+        }
+        .popup-container h2 {
+            color: yellow; /* Yellow text */
+            font-weight: bold; /* Make text bold */
+            background: -webkit-linear-gradient(#FF5733, #FF0000); /* Yellow gradient for text */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .popup-container p {
+            color: #ffffff;
+        }
+    </style>
+    <div class="popup-container">
+        <h2>All Uploaded Target's Have Been deleted</h2>
+        <p>Upload New Target's Via Source Face & Target Images From The Uploader Above</p>
+    </div>
+    <script>
+        setTimeout(function() {
+            var element = document.querySelector('.popup-container');
+            element.parentNode.removeChild(element);
+        }, 5000);
+    </script>
+    """
+    display(HTML(popup_html))
+
+# Attach the function to the button click event
+reset_button.on_click(delete_all_files)
+
+# Create a container to center the button
+button_container = widgets.HBox(
+    [reset_button],
+    layout=widgets.Layout(justify_content='center')
+)
+
+# Display the button container
+display(button_container)
+
+
+
 # HTML code for divider and headings with margin
 html_code = """
 <div style="margin-top: 10px; margin-bottom: 10px; width: 300px; height: 10px; background-color: #222222; border-radius: 5px; margin: 0 auto;"></div>
@@ -619,3 +666,5 @@ html_code = """
 
 # Display HTML
 display(HTML(html_code))
+
+# @markdown
