@@ -413,7 +413,7 @@ upload_button.on_click(on_button_click)
 # Create containers for select boxes, button, counter label, and HTML notes
 select_boxes_container = widgets.HBox([uploader1, uploader2], layout=widgets.Layout(justify_content='center'))
 button_container = widgets.HBox([upload_button], layout=widgets.Layout(justify_content='center'))
-container = widgets.VBox([counter_label], layout=widgets.Layout(justify_content='center'))
+counter_label_container = widgets.HBox([counter_label], layout=widgets.Layout(justify_content='center'))
 html_notes_container = widgets.HBox([html_note1, html_note2], layout=widgets.Layout(justify_content='center'))
 
 # Define custom CSS styles
