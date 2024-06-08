@@ -4,44 +4,41 @@ import subprocess
 import shutil
 import os
 import gdown
-from threading import Timer
 
-
-
+# Custom CSS for buttons, text fields, and popup text
 gradient_button_css = """
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
 
-
+body {
+    font-family: 'Bree Serif', serif;
+}
 
 button {
-    background: linear-gradient(to right, #444444, #555555); /* Dark grey gradient */
-    border-radius: 20px; /* Rounded corners */
-    border: none; /* No border */
-    color: white; /* Text color */
-    padding: 10px 20px; /* Padding */
-    text-align: center; /* Text alignment */
-    text-decoration: none; /* No text decoration */
-    display: inline-block; /* Display inline-block */
-    font-size: 18px; /* Font size */
-    font-weight: bold; /* Bold text */
-    margin: 4px 20px; /* Margin */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background 0.4s, transform 0.4s; /* Transition effect duration */
-    width: 300px; /* Fixed width */
+    background: linear-gradient(to right, #444444, #555555);
+    border-radius: 20px;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 20px;
+    cursor: pointer;
+    transition: background 0.4s, transform 0.4s;
+    width: 300px;
+    font-family: 'Bree Serif', serif;
 }
-
-/* Hover effect */
 button:hover {
-    background: linear-gradient(to right, #FF007F, #800080); /* Slightly lighter gradient on hover */
-    transform: scale(1.05); /* Slightly increase size */
+    background: linear-gradient(to right, #FF007F, #800080);
+    transform: scale(1.05);
 }
-
-/* Click effect */
 button:active {
-    background: linear-gradient(to right, #FA8072, #F5F5DC); /* Darker gradient on click */
-    transform: scale(0.95); /* Slightly decrease size */
+    background: linear-gradient(to right, #FA8072, #F5F5DC);
+    transform: scale(0.95);
 }
-
 .password_text {
   background-image: linear-gradient(to right, #444444, #555555);
   border: none;
@@ -52,65 +49,46 @@ button:active {
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: 'Bree Serif', serif;
 }
-
 .password_text:hover {
   background-image: linear-gradient(to right, #FF007F, #800080);
   box-shadow: 0px 0px 10px 0px rgba(181, 102, 184, 0.5);
 }
-
 </style>
 """
-# Inject custom CSS into the notebook
 display(HTML(gradient_button_css))
 
-# Define the custom CSS style
 custom_css = """
 <style>
-/* Increase font size for labels */
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
 .widget-label {
-    font-size: 14px !important; /* Adjust the font size as needed */
+    font-size: 14px !important;
+    font-family: 'Bree Serif', serif !important;
 }
-
-/* Increase font size and make button text bold */
 .widget-button {
-    font-size: 16px !important; /* Adjust the font size as needed */
+    font-size: 16px !important;
     font-weight: bold !important;
+    font-family: 'Bree Serif', serif !important;
 }
-
-/* Increase font size for upload box text */
 .upload-box-text {
-    font-size: 14px !important; /* Adjust the font size as needed */
+    font-size: 14px !important;
+    font-family: 'Bree Serif', serif !important;
 }
 </style>
 """
-
-# Inject the custom CSS into the notebook
 display(HTML(custom_css))
-
-
-from IPython.display import display, HTML, clear_output
-import ipywidgets as widgets
-import subprocess
-import shutil
-import os
 
 # Function to download from Google Drive
 def download_from_gdrive(url, save_path):
-    # Ensure the save path directory exists
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    
-    # Extract the file ID from the URL
     file_id = url.split('/d/')[1].split('/')[0]
     download_url = f'https://drive.google.com/uc?id={file_id}'
-    
-    # Download the file using gdown
     gdown.download(download_url, save_path, quiet=True)
 
-# Example usage
 gdrive_url = 'https://drive.google.com/file/d/12CJ2yRqgMcdQnFSxPrjVmDly8kZckJUV/view?usp=drivesdk'
 save_path = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Bypass.zip'
-
 download_from_gdrive(gdrive_url, save_path)
 
 # Function to run the extracted Python file
@@ -125,61 +103,55 @@ def run_extracted_file():
     else:
         print("Extracted file not found!")
 
-from IPython.display import display, HTML, clear_output
-import ipywidgets as widgets
-import subprocess
-import shutil
-import os
-
 # Function to unlock the ZIP file
 def unlock_zip(button):
     password = password_text.value
     try:
-        # Check if extraction directory exists
         extraction_dir = '/content/Rupantarak/Rupantarak_Pro/Rupantarak_I/unzipped'
         if os.path.exists(extraction_dir):
-            shutil.rmtree(extraction_dir)  # Delete the old extraction directory and its contents
+            shutil.rmtree(extraction_dir)
         
-        # Extract the new ZIP file
         command = f'unzip -P "{password}" /content/Rupantarak/Rupantarak_Pro/Rupantarak_I/Bypass.zip -d {extraction_dir}'
         output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
-        # No need to print output as it's hidden now
         
-        # Display success message
         display_success()
         
     except subprocess.CalledProcessError as e:
-        # Display wrong password message
         display_wrong_password()
-# Function to display a success message with a continuously looping animated pop arrow at the bottom
+
 # Function to display a success message with a continuously looping animated pop arrow at the bottom
 def display_success():
     success_html = """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
     .success-popup {
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, #222222, #222222); /* Popup background gradient */
+        background: linear-gradient(135deg, #222222, #222222);
         border: 2px solid #222222;
         border-radius: 10px;
         padding: 20px;
         text-align: center;
-        width: 250px; /* Set width */
-        color: #ffffff; /* Text color */
+        width: 250px;
+        color: #ffffff;
+        font-family: 'Bree Serif', serif;
     }
     .success-popup h2 {
-        background: linear-gradient(to right, #00FF00, #008000); /* Green gradient */
+        background: linear-gradient(to right, #00FF00, #008000);
         font-weight: bold;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        font-family: 'Bree Serif', serif;
     }
     .success-popup p {
-        background: linear-gradient(to right, #FF007F, #800080); /* Pink-purple gradient */
+        background: linear-gradient(to right, #FF007F, #800080);
         font-weight: bold;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        font-family: 'Bree Serif', serif;
     }
     .arrow {
         position: absolute;
@@ -190,7 +162,7 @@ def display_success():
         height: 0;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-top: 20px solid #00FF00; /* Arrow color */
+        border-top: 20px solid #00FF00;
         animation: arrowPop 0.5s infinite alternate;
     }
     @keyframes arrowPop {
@@ -199,8 +171,8 @@ def display_success():
     }
     </style>
     <div id="success-popup" class="success-popup">
-        <h2>रूपांतरक ~ Rupantarak Uncensored Unlocked Successfully!</h2> <!-- Success text green gradient -->
-        <h3>Run Below Cell To Use The Tool...</h3> <!-- Other text pink-purple gradient -->
+        <h2>रूपांतरक ~ Rupantarak Uncensored Unlocked Successfully!</h2>
+        <h3>Run Below Cell To Use The Tool...</h3>
         <div class="arrow"></div>
     </div>
     """
@@ -208,15 +180,12 @@ def display_success():
     success_popup = widgets.HTML(success_html)
     display(success_popup)
 
-# Call display_success to show the success message with the continuously looping animated pop arrow at the bottom
-# Call display_success to show the success message with the continuously looping animated pop arrow at the bottom
-
-
-
 # Function to display a message for wrong password
 def display_wrong_password():
     wrong_password_html = """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
     .wrong-password-popup {
         position: fixed;
         top: 50%;
@@ -227,12 +196,14 @@ def display_wrong_password():
         border-radius: 10px;
         padding: 20px;
         text-align: center;
-        width: 250px; /* Set width */
-        color: #111111; /* Text color */
+        width: 250px;
+        color: #111111;
+        font-family: 'Bree Serif', serif;
     }
     .wrong-password-popup h2 {
         color: #ffffff;
         font-weight: bold;
+        font-family: 'Bree Serif', serif;
     }
 </style>
 <div id="wrong-password-popup" class="wrong-password-popup">
@@ -240,7 +211,6 @@ def display_wrong_password():
     <p>Please enter the correct password.</p>
 </div>
 <script>
-    // Hide the popup after 3 seconds
     setTimeout(function() {
         var popup = document.getElementById("wrong-password-popup");
         popup.style.display = "none";
@@ -254,18 +224,13 @@ def display_wrong_password():
 # Create password input field without a label
 password_text = widgets.Password(placeholder='Enter password')
 password_text.add_class("password_text")
-
-# Set width and height for the password field
 password_text.layout.width = '250px'
 password_text.layout.height = 'auto'
 
 # Create extract button
 extract_button = widgets.Button(description='Access रूपांतरक ~ Rupantarak')
-
-# Set width and height for the button
 extract_button.layout.width = '250px'
 extract_button.layout.height = '50px'
-
 extract_button.on_click(unlock_zip)
 
 # Create a container to center the elements with margins
@@ -274,8 +239,6 @@ container = widgets.VBox([widgets.Label(''), password_text, widgets.Label(''), e
 
 # Create another container to center the main container
 main_container = widgets.VBox([container], layout=widgets.Layout(justify_content='center', align_items='center'))
-
-# Modify the layout of the main container to remove any unnecessary space
 main_container.layout.margin = '0px'
 
 # Display main container
