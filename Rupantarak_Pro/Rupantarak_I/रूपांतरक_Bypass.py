@@ -135,7 +135,7 @@ def display_success():
         border-radius: 10px;
         padding: 20px;
         text-align: center;
-        width: 280px;
+        width: 250px;
         color: #ffffff;
         font-family: 'Bree Serif', serif;
     }
@@ -172,7 +172,7 @@ def display_success():
     </style>
     <div id="success-popup" class="success-popup">
         <h2>रूपांतरक ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ Unlocked Successfully!</h2>
-        <h3>ʏᴏᴜ ᴄᴀɴ ɴᴏᴡ ᴜsᴇ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ ᴡɪᴛʜᴏᴜᴛ ᴀɴʏ ʟɪᴍɪᴛᴀᴛɪᴏɴs.</h3>
+        <h3>ʀᴜɴ ʙᴇʟᴏᴡ ᴄᴇʟʟs ᴛᴏ ᴜsᴇ रूपांतरक ~ Ꮢᥙραɳ𝜏αɾαƙ ᑌᑎᑕᗴᑎᔕᗝᖇᗴᗪ</h3>
         <div class="arrow"></div>
     </div>
     """
